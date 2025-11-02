@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div>Pages</div>
+      <div>Pages again</div>
     </>
   )
 }
