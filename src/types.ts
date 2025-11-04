@@ -1,5 +1,3 @@
-import type { MouseEvent, MouseEventHandler } from "react"
-
 export type ProductType = {
     id: number,
     title: string,
