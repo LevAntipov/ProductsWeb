@@ -54,12 +54,11 @@
     margin: 0px;
 }
 
-.itemName {}
-
 .itemName h3 {
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp:inherit;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -74,6 +73,7 @@
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp:inherit;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: #9C9CA6;

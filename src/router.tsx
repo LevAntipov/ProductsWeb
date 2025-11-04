@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link, Outlet, useNavigate, useParams } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import classesR from './Router.module.css'
 
 import {Header} from './modules/Header/Header'
