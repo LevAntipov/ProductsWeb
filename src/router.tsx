@@ -19,7 +19,7 @@ function Root() {
 
 export const router = createBrowserRouter([
     {
-        path: "/ProductsWeb/",
+        path: import.meta.env.BASE_URL,
         Component: Root,
         children: [
             {
