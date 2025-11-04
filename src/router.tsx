@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import {createHashRouter, Outlet } from "react-router";
 import classesR from './Router.module.css'
 
 import {Header} from './modules/Header/Header'
@@ -17,7 +17,7 @@ function Root() {
     )
 }
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
     {
         path: import.meta.env.BASE_URL,
         Component: Root,
