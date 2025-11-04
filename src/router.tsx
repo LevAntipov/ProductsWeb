@@ -1,50 +1,19 @@
-import { createBrowserRouter, Link, Outlet, useNavigate } from "react-router";
-import milk from './mil.jpeg'
+import { createBrowserRouter, Link, Outlet, useNavigate, useParams } from "react-router";
+import classesR from './Router.module.css'
 
+import {Header} from './modules/Header/Header'
+import { Products } from "./modules/Products/Products/Products";
+import { ProductCardInfo } from "./modules/Products/ProductCardInfo/ProductCardInfo";
 
 
 function Root() {
     return (
-        <>
-            <Link to='/ProductsWeb/about'>About</Link>
-            <Link to='/ProductsWeb/food'>Food</Link>
-            <Link to='/ProductsWeb/milk'>Milk</Link>
-            <h1>Food or Milk below</h1>
+        <div style={{backgroundColor:'#1E1F26', color:'#E6E6E9'}}>
+            <div className={classesR.body}>
+            <Header/>
             <Outlet />
-        </>
-    )
-}
-
-function About() {
-    const navigate = useNavigate()
-
-    return (
-        <>
-            <h1>About</h1>
-            <button onClick={() => navigate(-1)}>Tap to back</button>
-        </>
-    )
-}
-
-function Food() {
-    const navigate = useNavigate()
-
-    return (
-        <>
-            <h1>Food</h1>
-            <button onClick={() => navigate(-1)}>Tap to back</button>
-        </>
-    )
-}
-function Milk() {
-    const navigate = useNavigate()
-
-    return (
-        <>
-            <h1>Milk</h1>
-            <img src={milk}></img>
-            <button onClick={() => navigate(-1)}>Tap to back</button>
-        </>
+        </div>
+        </div>
     )
 }
 
@@ -52,14 +21,14 @@ export const router = createBrowserRouter([
     {
         path: "/ProductsWeb/",
         Component: Root,
-        children:[
-            {path:'food', Component:Food},
-            {path:'milk', Component:Milk},
+        children: [
+            {
+                path: 'products', Component: Products,
+            },
+            {
+                path: 'products/:id', Component: ProductCardInfo
+            }
         ]
 
-    },
-    {
-        path: "/ProductsWeb/about",
-        Component: About,
     }
 ]);
