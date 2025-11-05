@@ -1,4 +1,5 @@
 import classes from './Header.module.css'
+import shoppingCart from '../../assets/shoppingCartIcon.png'
 
 export const Header = () => {
     return (
@@ -9,8 +10,8 @@ export const Header = () => {
                 <button>Q</button>
             </div>
             <div>
-                <div>
-                    <button>Q</button>
+                <div className={classes.shoppingCartBlock}>
+                    <img src={shoppingCart} style={{color:'red'}}></img>
                 </div>
             </div>
         </header>
