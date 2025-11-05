@@ -28,7 +28,7 @@ export const Products = () => {
             console.log(element)
         }
         else{
-            navigate('/ProductsWeb/products/' + id)
+            navigate(`${id}`)
         }
     }
 
