@@ -1,0 +1,90 @@
+.container{
+    display: flex;
+    width: 65%;
+    column-gap: 20px;
+    padding: 40px 20px;
+    background-color: rgba(68, 63, 84, 0.421);
+    border-radius: 10px;
+    height: 220px;
+}
+
+.image{
+    display: flex;
+    max-width: 120px;
+    padding: 20px;
+    background-color: #1A1B22;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.image img{
+    width: 70%;
+}
+
+.infoBlock{
+    display: flex;
+    flex-direction: column;
+justify-content: space-between;
+}
+.infoBlock h3{
+    font-size: 16px;
+}
+
+.priceBlock{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.totalPurchase{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: auto;
+}
+.totalPurchase span{
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.trashBin{
+    width: 40px;
+    padding: 5px;
+    background-color: #E26D6D;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+.trashBin:hover{
+    background-color: #cc5555;
+}
+
+.buttonsBlock{
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.decreaseButton,
+.increaseButton{
+    padding-inline: 15px;
+    border: none;
+    background-color: inherit;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.decreaseButton{
+    background-color: #E26D6D;
+}
+
+.decreaseButton:hover{
+    background-color: #cc5555;
+}
+
+.increaseButton{
+    background-color: #5FBF88;
+}
+.increaseButton:hover{
+    background-color: #4fa878;
+}
+

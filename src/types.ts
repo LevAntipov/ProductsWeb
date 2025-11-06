@@ -9,6 +9,13 @@ export type ProductType = {
       count: number
     }
 }
+
+export type ProductCartItemType = {
+  title: string,
+  price: number,
+  image: string,
+}
+
 export type DeepProductType = {
     id: number,
     title: string,

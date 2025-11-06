@@ -9,7 +9,30 @@
     background-color: #1A1B22;
 }
 
-.shoppingCartBlock{
-    width: 60px;
-    height: 60px;
+.shoppingCart{
+    width: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+.shoppingCart:hover{
+    background-color: #43bad2;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.shopName{
+    padding-block: 5px;
+    padding-inline: 15px;
+    border: 1px rgb(128, 186, 193) solid;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+
+.shopName:hover{
+    border: none;
+    color: black;
+    background-color: #43bad2;
 }
