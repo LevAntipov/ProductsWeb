@@ -15,40 +15,32 @@ export const Products = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
+    const ids = useAppSelector((state) => state.products.ids)
+    const chosenProducts = useAppSelector(selectChosenProducts)
+
     useEffect(()=>{
         dispatch(getProducts())
     },[])
 
-    const ids = useAppSelector((state) => state.products.ids)
-    const chosenProducts = useAppSelector(selectChosenProducts)
-
     const handleCardClick:HandleCardClick = (e,id) => {
 
-        const element = (e.target as HTMLElement)
+        const action = (e.target as HTMLElement).getAttribute('data-action')
 
-        if(element.innerHTML === 'Add'){
-            dispatch(actionWithProduct({operation:'add', id}))
-        }
-        else if(element.innerHTML === '+'){
-            dispatch(actionWithProduct({operation:'increase', id}))
-        }
-        else if(element.innerHTML === '-'){
-            dispatch(actionWithProduct({operation:'decrease', id}))
-        }
-        else{
-            navigate(`${id}`)
-        }
+        if(action === 'add') dispatch(actionWithProduct({operation:'add', id}))
+        else if(action === 'inc') dispatch(actionWithProduct({operation:'increase', id}))
+        else if(action === 'dec') dispatch(actionWithProduct({operation:'decrease', id}))
+        else navigate(`${id}`)
     }
 
     return (
         <div className={classes.container}>
             {
                 ids && ids.map((id)=>{
-                    if(chosenProducts[id]){
-                        const quantity = chosenProducts[id]
-                        return <ProductCard key={id} id={id} quantity = {quantity} handleCardClick={handleCardClick}/>
-                    }
-                    return <ProductCard key={id} id={id} handleCardClick={handleCardClick}/>
+                    // if(chosenProducts[id]){
+                    //     const quantity = chosenProducts[id]
+                    //     return <ProductCard key={id} id={id} quantity = {quantity} handleCardClick={handleCardClick}/>
+                    // }
+                    return <ProductCard key={id} id={id} quantity={chosenProducts[id]} handleCardClick={handleCardClick}/>
                 })
             }
         </div>

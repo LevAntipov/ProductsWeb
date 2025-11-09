@@ -1,17 +1,22 @@
-import { createHashRouter, Navigate, Outlet } from "react-router";
+
+import { createHashRouter, Navigate, Outlet } from 'react-router';
+import { useEffect } from 'react';
+
 import classesR from './Router.module.css'
 
 import { Header } from "./modules/Header/Header"
 import { Products } from "./modules/Products/Products/Products";
 import { ProductCardInfo } from "./modules/Products/ProductCardInfo/ProductCardInfo";
-import {ProductsCart} from "./modules/Products/ProductsCart/ProductsCart"
-import { useDispatch } from "react-redux";
+import { ProductsCart } from "./modules/Products/ProductsCart/ProductsCart"
 import { checkChosenProducts } from "./redux/cartsReducer";
+import { useAppDispatch } from './shared/hooks';
 
 function Root() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    dispatch(checkChosenProducts())
+    useEffect(()=>{
+        dispatch(checkChosenProducts())
+    },[])
 
     return (
         <div style={{ backgroundColor: '#1E1F26', color: '#E6E6E9' }}>
@@ -41,7 +46,7 @@ export const router = createHashRouter([
                 path: 'products/:id', Component: ProductCardInfo
             },
             {
-                path: '/carts', Component: ProductsCart
+                path: 'carts', Component: ProductsCart
             }
         ]
 

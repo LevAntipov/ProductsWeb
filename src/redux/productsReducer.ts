@@ -55,14 +55,13 @@ export const productsReducer = createSlice({
     },
     extraReducers:(builder) => {
         builder.addCase(getProducts.fulfilled,(state, action:PayloadAction<ProductType[]>)=>{
+            debugger
             state.fetchProductsStatus = 'fullfilled'
             state.entities = action.payload.reduce((acc:Record<number,ProductType>,product:ProductType)=>{
-                if(!acc[product.id]){
-                    state.ids.push(product.id)
-                    acc[product.id] = product
-                }
+                acc[product.id] = product
                 return acc
             },{})
+            state.ids = action.payload.map((item)=>item.id)
         })
         builder.addCase(getProducts.pending,(state)=>{
             state.fetchProductsStatus = 'pending'

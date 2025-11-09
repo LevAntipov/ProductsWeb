@@ -7,20 +7,16 @@ import { selectChosenProducts } from '../../../redux/cartsReducer'
 
 export const ProductsCart = () => {
 
-    const products = useAppSelector(selectChosenProducts)
-
-    const ids = Object.keys(products)
-    const quantity = Object.values(products)
+    const products = useAppSelector(selectChosenProducts) // {id:qnty,id2:qnty2}
 
     return (<div className={classes.container}>
         <div>
             <h1>Shopping Cart</h1>
         </div>
         <div className={classes.cartItems}>
-            {ids.map((id, index) => {
-                return <CartItem key={id} id={+id} quantity={quantity[index]} />
+            {Object.entries(products).map(([id,quantity])=>{
+                return <CartItem key={id} id={+id} quantity={quantity} />
             })}
-            { }
         </div>
     </div>
     )

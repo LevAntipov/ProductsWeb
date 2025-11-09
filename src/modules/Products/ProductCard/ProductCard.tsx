@@ -9,6 +9,8 @@ export const ProductCard: FC<ProductCardType> = ({ id, quantity, handleCardClick
     const product = useAppSelector((state) => state.products.entities[id])
     const {image, description, price, rating, title} = product
 
+    if (!product) return <div className={classes.card}>Loading...</div>
+
     return (
         <div className={classes.card} onClick={(e) => handleCardClick(e, id)}>
             <div className={classes.image}>
@@ -30,11 +32,11 @@ export const ProductCard: FC<ProductCardType> = ({ id, quantity, handleCardClick
                         <img className={classes.iconStar} width='10px' height='10px' src={cardInfoIconStar}></img>
                     </div>
                         {quantity === undefined 
-                        ? <button className={classes.purchaseButton}>Add</button>
+                        ? <button data-action="add" className={classes.purchaseButton} type='button'>Add</button>
                         : <div className={classes.buttonsBlock}>
-                            <button className={classes.decreaseButton}>-</button>
+                            <button data-action="dec" className={classes.decreaseButton} type='button'>-</button>
                             <span style={{minWidth:'10px'}}>{quantity}</span>
-                            <button className={classes.increaseButton}>+</button>
+                            <button data-action="inc" className={classes.increaseButton} type='button'>+</button>
                         </div>
                     }
                 </div>

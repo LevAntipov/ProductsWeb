@@ -25,9 +25,13 @@ const cartsReducer = createSlice({
     },
     reducers: {
         checkChosenProducts: (state) => {
-            //@ts-ignore
-            state.chosenProducts = JSON.parse(window.localStorage.getItem('cart')).chosenProducts
-            debugger
+            let storedCart = window.localStorage.getItem('cart')
+            if (storedCart) {
+                state.chosenProducts = JSON.parse(window.localStorage.getItem('cart')!).chosenProducts
+            }
+            else{
+                state.chosenProducts = {}
+            }
         },
         addProduct: (state, payload: PayloadAction<{ id: ProductId, quantity: ProductsQuantity }>) => {
             const { id, quantity } = payload.payload
