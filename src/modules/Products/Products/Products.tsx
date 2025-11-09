@@ -1,31 +1,39 @@
-import { useEffect, useState } from "react"
-import type { HandleCardClick, ProductType } from "../../../types"
-import { ProductCard } from "../ProductCard/ProductCard"
-import classes from './Products.module.css'
+import { useEffect } from "react"
 import { useNavigate } from "react-router"
 
+import type { HandleCardClick } from "../../../types"
+
+import classes from './Products.module.css'
+import { useAppDispatch, useAppSelector } from "../../../shared/hooks"
+import { ProductCard } from "../ProductCard/ProductCard"
+import { getProducts } from "../../../redux/productsReducer"
+import { actionWithProduct } from "../../../redux/cartsReducer"
+import { selectChosenProducts } from "../../../redux/cartsReducer"
 
 export const Products = () => {
 
-    const [products, setProducts] = useState<ProductType[] | null>(null)
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     useEffect(()=>{
-        fetch('https://fakestoreapi.com/products')
-        .then((res) => res.json())
-        .then((res) => setProducts(res))
+        dispatch(getProducts())
     },[])
 
+    const ids = useAppSelector((state) => state.products.ids)
+    const chosenProducts = useAppSelector(selectChosenProducts)
+
     const handleCardClick:HandleCardClick = (e,id) => {
-        const element = (e.target as HTMLElement).tagName
-        if(element === 'BUTTON'){
-            console.log(element)
+
+        const element = (e.target as HTMLElement)
+
+        if(element.innerHTML === 'Add'){
+            dispatch(actionWithProduct({operation:'add', id}))
         }
-        else if(element === 'decrease'){
-            console.log(element)
+        else if(element.innerHTML === '+'){
+            dispatch(actionWithProduct({operation:'increase', id}))
         }
-        else if(element === 'increase'){
-            console.log(element)
+        else if(element.innerHTML === '-'){
+            dispatch(actionWithProduct({operation:'decrease', id}))
         }
         else{
             navigate(`${id}`)
@@ -35,10 +43,12 @@ export const Products = () => {
     return (
         <div className={classes.container}>
             {
-                products && products.map((product)=>{
-                    return <ProductCard key={product.id} description={product.description} 
-                    id={product.id} image={product.image} price={product.price}
-                    rating={product.rating} title={product.title} handleCardClick={handleCardClick}/>
+                ids && ids.map((id)=>{
+                    if(chosenProducts[id]){
+                        const quantity = chosenProducts[id]
+                        return <ProductCard key={id} id={id} quantity = {quantity} handleCardClick={handleCardClick}/>
+                    }
+                    return <ProductCard key={id} id={id} handleCardClick={handleCardClick}/>
                 })
             }
         </div>

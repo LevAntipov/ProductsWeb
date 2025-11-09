@@ -5,8 +5,14 @@ import { Header } from "./modules/Header/Header"
 import { Products } from "./modules/Products/Products/Products";
 import { ProductCardInfo } from "./modules/Products/ProductCardInfo/ProductCardInfo";
 import {ProductsCart} from "./modules/Products/ProductsCart/ProductsCart"
+import { useDispatch } from "react-redux";
+import { checkChosenProducts } from "./redux/cartsReducer";
 
 function Root() {
+    const dispatch = useDispatch()
+
+    dispatch(checkChosenProducts())
+
     return (
         <div style={{ backgroundColor: '#1E1F26', color: '#E6E6E9' }}>
             <div className={classesR.body}>
@@ -35,7 +41,7 @@ export const router = createHashRouter([
                 path: 'products/:id', Component: ProductCardInfo
             },
             {
-                path: 'products/cart', Component: ProductsCart
+                path: '/carts', Component: ProductsCart
             }
         ]
 

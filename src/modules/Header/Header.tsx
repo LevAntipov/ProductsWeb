@@ -12,7 +12,7 @@ export const Header = () => {
                 <button>Q</button>
             </div>
             <div>
-                <Link to={'/products/cart'} className={classes.shoppingCart}>
+                <Link to={'/carts'} className={classes.shoppingCart}>
                     <img src={shoppingCart} style={{ color: 'red' }}></img>
                 </Link>
             </div>
