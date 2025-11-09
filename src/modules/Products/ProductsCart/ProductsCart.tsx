@@ -1,7 +1,3 @@
-import { useEffect, useState } from 'react'
-
-import type { ProductType } from '../../../types'
-
 import classes from './ProductsCart.module.css'
 import { CartItem } from '../ProductCartItem/ProductCartItem'
 import { useAppSelector } from '../../../shared/hooks'
