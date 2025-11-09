@@ -1,4 +1,4 @@
-import { useDispatch, useSelector, type TypedUseSelectorHook } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch, RootState } from "../redux/store"
 
 // Используйте во всем приложении вместо обычных `useDispatch` и `useSelector`

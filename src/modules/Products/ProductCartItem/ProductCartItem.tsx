@@ -1,10 +1,9 @@
 import { useEffect, useState, type FC } from "react"
+import { useDispatch } from "react-redux"
 
 import classes from './ProductCartItem.module.css'
 import trashBin from '../../../assets/trashBin.png'
 import type { HandleCardClick, ProductCartItemType, ProductId, ProductType } from "../../../types"
-import { useDispatch } from "react-redux"
-import { getProduct } from "../../../redux/productsReducer"
 import { actionWithProduct, deleteChosenProduct } from "../../../redux/cartsReducer"
 
 export const CartItem: FC<ProductCartItemType> = (props) => {
@@ -38,7 +37,7 @@ export const CartItem: FC<ProductCartItemType> = (props) => {
             //navigate(`${id}`)
         }
     }
-    const handleDeleteCartProduct: HandleCardClick = (e, id: ProductId) => {
+    const handleDeleteCartProduct = (id: ProductId) => {
         dispatch(deleteChosenProduct(id))
     }
 
@@ -62,7 +61,7 @@ export const CartItem: FC<ProductCartItemType> = (props) => {
                     </div>
                     <div className={classes.totalPurchase}>
                         <span>${totalProductPrice}</span>
-                        <div className={classes.trashBin} onClick={(e) => handleDeleteCartProduct(e, id)}><img src={trashBin}></img></div>
+                        <div className={classes.trashBin} onClick={() => handleDeleteCartProduct(id)}><img src={trashBin}></img></div>
                     </div>
                 </>
                 : <div>Loading product...</div>

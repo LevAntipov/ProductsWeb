@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react'
+import { type FC } from 'react'
 import classes from './ProductCard.module.css'
 import cardInfoIconStar from '../../../assets/cardInfoIconStar.svg'
 import type { ProductCardType } from '../../../types'
