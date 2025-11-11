@@ -40,7 +40,7 @@ export const ProductCardInfo = () => {
     return (
     <>
             <div className={classes.backToTap} onClick={() => navigate(-1)}>
-                <h4>Back to shop</h4>
+                <h4>Go back</h4>
                 <img className={classes.backToIcon} src={backToIcon} width='20px' height='8px'></img>
             </div>
             {product

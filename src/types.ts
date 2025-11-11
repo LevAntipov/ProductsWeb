@@ -22,10 +22,10 @@ export type ProductCartItemType = {
 export type ProductCardType = {
     id: ProductId
     quantity?:ProductsQuantity
-    handleCardClick:(e: React.MouseEvent<HTMLDivElement>,id:number)=>void
+    handleCardClick:HandleCardClick
 }
 
-export type StatusType = 'fullfilled' | 'pending' | 'rejected' | 'idle'
+export type StatusType = 'fulfilled' | 'pending' | 'rejected' | 'idle'
 // Тип без параметров, просто типизация события клика
 //export type HandleCardClick = React.MouseEventHandler<HTMLDivElement>
 export type HandleCardClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => void;

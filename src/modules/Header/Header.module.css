@@ -1,4 +1,4 @@
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,21 +9,23 @@
     background-color: #1A1B22;
 }
 
-.shoppingCart{
+.shoppingCart {
     width: 40px;
     padding: 5px;
     border-radius: 5px;
     transition: 0.2s ease;
 }
-.shoppingCart:hover{
+
+.shoppingCart:hover {
     background-color: #43bad2;
 }
-a{
+
+a {
     text-decoration: none;
     color: inherit;
 }
 
-.shopName{
+.shopName {
     padding-block: 5px;
     padding-inline: 15px;
     border: 1px rgb(128, 186, 193) solid;
@@ -31,8 +33,45 @@ a{
     transition: 0.2s ease;
 }
 
-.shopName:hover{
+.shopName:hover {
     border: none;
     color: black;
     background-color: #43bad2;
+}
+
+.searchBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.searchButton {
+    width: 40px;
+    border: none;
+    background-color: inherit;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+
+.searchButton:hover{
+    background-color: #43bad2;
+}
+
+.searchButton img {
+    width: 30px;
+}
+
+.searchBlock input{
+    background-color: rgba(68, 63, 84, 0.421);
+    border: 1px solid rgb(57, 55, 78);
+    color:#E6E6E6;
+    font-weight: 100;
+    border-radius: 5px;
+    outline: none;
+}
+
+.searchBlock input::placeholder{
+color:#E6E6E6;
 }
