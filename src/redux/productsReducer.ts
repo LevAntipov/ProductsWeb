@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSelector, createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 import type { ProductType } from "../types";
 import type { StatusType } from "../types";
-import type { RootState } from "./store";
 
 type initialStateType = {
     ids: number[]
@@ -23,32 +22,6 @@ const initialState: initialStateType = {
     fetchProductsStatus: 'idle',
     fetchProductStatus: 'idle',
 }
-
-export const selectProductsState = (state: RootState) => state.products
-export const selectEntities = (state: RootState) => state.products.entities
-export const selectIds = (state: RootState) => state.products.ids
-export const selectFilter = (state: RootState) => state.products.filter
-
-export const selectFilteredIds = createSelector(
-    [selectIds, selectEntities, selectFilter],
-    (ids, entities, filter) => {
-        if (!filter) return ids
-        const lower = filter.toLowerCase()
-        return ids.filter((id) => entities[id].title.toLowerCase().includes(lower))
-    }
-)
-
-// export const getProducts = createAsyncThunk(
-//     'products/getProducts',
-//     async (_, { rejectWithValue }) => {
-//         try {
-//             const response = await fetch('https://fakestoreapi.com/products')
-//             return await response.json()
-//         } catch (err) {
-//             return rejectWithValue(err)
-//         }
-//     }
-// )
 
 export const getProducts = createAsyncThunk<ProductType[],void,{ rejectValue: string }>(
     'products/getProducts',
@@ -92,8 +65,8 @@ export const productsReducer = createSlice({
         },
         setNewProduct:(state,action)=>{
             debugger
-            const {id, description, title, price} = action.payload.res2
-            state.entities[id] = {description,title,price,category:'tshirt',id,image:'123',rating:{count:230,rate:4}}
+            const {id, description, title, price,image} = action.payload.res2
+            state.entities[id] = {description,title,price,category:'tshirt',id,image, rating:{count:230,rate:4}}
             state.ids.push(id)
         }
     },
@@ -110,7 +83,7 @@ export const productsReducer = createSlice({
         builder.addCase(getProducts.pending, (state) => {
             state.fetchProductsStatus = 'pending'
         })
-        builder.addCase(getProducts.rejected, (state,action) => {
+        builder.addCase(getProducts.rejected, (state) => {
             state.fetchProductsStatus = 'rejected'
         })
 

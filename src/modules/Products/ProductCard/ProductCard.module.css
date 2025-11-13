@@ -1,6 +1,7 @@
 .card {
     left: 50px;
     display: flex;
+    width: 250px;
     max-width: 250px;
     height: 400px;
     flex-direction: column;
@@ -35,8 +36,7 @@
 .info {
     display: flex;
     flex-direction: column;
-    max-width: 90%;
-    margin: 0 auto;
+    padding-inline: 15px;
     row-gap: 10px;
     justify-self: end;
     height: 50%;

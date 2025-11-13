@@ -5,3 +5,11 @@
     row-gap: 50px;
     column-gap: 50px;
 }
+
+.offerBlock{
+    width: 100%;
+    padding-inline: 35px;
+    display: flex;
+  justify-content: center; /* центрирует по горизонтали */
+  align-items: center;
+}
