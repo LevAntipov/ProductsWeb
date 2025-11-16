@@ -22,7 +22,8 @@ export const CartItem: FC<ProductCartItemType> = (props) => {
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${id}`)
             .then((res) => res.json())
-            .then((data) => setProduct(data))
+            .then((data) =>setProduct(data))
+            
     }, [])
 
     const handleCardClick: HandleCardClick = (e, id) => {

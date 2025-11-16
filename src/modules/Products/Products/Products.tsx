@@ -19,8 +19,9 @@ export const Products = () => {
 
     const chosenProducts = useAppSelector(selectChosenProducts)
     const filteredIds = useAppSelector(selectFilteredIds)
-
+    
     useEffect(() => {
+        debugger
         dispatch(getProducts())
     }, [])
 
@@ -36,9 +37,8 @@ export const Products = () => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.offerBlock}><button className={classes.offerLink}>Offer your product</button></div>
             {
-                filteredIds && filteredIds.map((id) => {
+                filteredIds && filteredIds.map((id:number) => {
                     return <ProductCard key={id} id={id} quantity={chosenProducts[id]} handleCardClick={handleCardClick} />
                 })
             }

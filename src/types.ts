@@ -1,5 +1,6 @@
 export type ProductId = number
 export type ProductsQuantity = number
+export type FilterMethodType = 'no filter' | 'low to high' | 'high to low' | 'raiting filter' | 'popularity filter'
 
 export type ProductType = {
     id: ProductId,

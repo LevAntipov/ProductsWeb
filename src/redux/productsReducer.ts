@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import type { ProductType } from "../types";
+import type { FilterMethodType, ProductType } from "../types";
 import type { StatusType } from "../types";
 
 type initialStateType = {
@@ -8,7 +8,7 @@ type initialStateType = {
     filterredIds: number[]
     entities: Record<number, ProductType>
     product: ProductType | null
-    filter: string | null
+    filter: {str:string | null, method: FilterMethodType}
     fetchProductsStatus: StatusType
     fetchProductStatus: StatusType
 }
@@ -18,7 +18,7 @@ const initialState: initialStateType = {
     filterredIds: [],
     entities: {},
     product: null,
-    filter: '',
+    filter: {str:'',method:'no filter'},
     fetchProductsStatus: 'idle',
     fetchProductStatus: 'idle',
 }
@@ -60,15 +60,9 @@ export const productsReducer = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        setFilter: (state, action: PayloadAction<{ substr: string }>) => {
-            state.filter = action.payload.substr
+        setFilter: (state, action: PayloadAction<{ str: string, method: FilterMethodType}>) => {
+            state.filter = {str:action.payload.str, method:action.payload.method}
         },
-        setNewProduct:(state,action)=>{
-            debugger
-            const {id, description, title, price,image} = action.payload.res2
-            state.entities[id] = {description,title,price,category:'tshirt',id,image, rating:{count:230,rate:4}}
-            state.ids.push(id)
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(getProducts.fulfilled, (state, action: PayloadAction<ProductType[]>) => {
@@ -103,6 +97,6 @@ export const productsReducer = createSlice({
 
 const { actions, selectors, reducer } = productsReducer
 
-export const { setFilter, setNewProduct } = actions
+export const { setFilter } = actions
 export const { } = selectors
 export default reducer
