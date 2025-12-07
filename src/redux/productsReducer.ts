@@ -84,7 +84,9 @@ export const productsReducer = createSlice({
 
         builder.addCase(getProduct.fulfilled, (state, action) => {
             state.fetchProductStatus = 'fulfilled'
+            let id = action.payload.id
             state.product = action.payload
+            state.entities[id] = action.payload
         })
         builder.addCase(getProduct.pending, (state) => {
             state.fetchProductStatus = 'pending'
