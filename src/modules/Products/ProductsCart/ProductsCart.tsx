@@ -13,11 +13,14 @@ export const ProductsCart = () => {
         <div>
             <h1>Shopping Cart</h1>
         </div>
-        <div className={classes.cartItems}>
-            {Object.entries(products).map(([id,quantity])=>{
-                return <CartItem key={id} id={+id} quantity={quantity} />
-            })}
-        </div>
+        {Object.entries(products).length === 0
+            ? <div style={{textAlign:'center'}}>No products</div>
+            : <div className={classes.cartItems}>
+                {Object.entries(products).map(([id, quantity]) => {
+                    return <CartItem key={id} id={+id} quantity={quantity} />
+                })}
+            </div>}
+
     </div>
     )
 }
