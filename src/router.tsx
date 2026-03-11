@@ -1,7 +1,7 @@
 import { createHashRouter, Navigate, Outlet } from "react-router";
 import { useEffect } from "react";
 
-import classesR from "./Router.module.css";
+import classes from "./Router.module.css";
 
 import { Header } from "./modules/Header/Header";
 import { Products } from "./modules/Products/Products/Products";
@@ -18,8 +18,8 @@ function Root() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#1E1F26", color: "#E6E6E9" }}>
-      <div className={classesR.body}>
+    <div className={classes.root}>
+      <div className={classes.body}>
         <Header />
         <Outlet />
       </div>

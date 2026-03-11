@@ -199,14 +199,10 @@ a {
 }
 
 @media(max-width:700px) {
-    .searchBlock,
-    .shoppingCart{
+    .shopName{
         display: none;
     }
-    .burgerContainer{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .header{
+        justify-content: space-around;
     }
-    
 }
