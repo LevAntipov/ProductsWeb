@@ -23,22 +23,22 @@ export const ProductCardInfo = () => {
         }
     }, [])
 
-    const handleQuantityBlockClick = (e:MouseEvent<HTMLDivElement>) => {
+    const handleQuantityBlockClick = (e: MouseEvent<HTMLDivElement>) => {
         const textContent = (e.target as HTMLElement).innerHTML
-        if(textContent === "Add to cart"){
-            dispatch(addProduct({id:+id, quantity:quantity}))
+        if (textContent === "Add to cart") {
+            dispatch(addProduct({ id: +id, quantity: quantity }))
             setQuantity(0)
         }
-        else if(textContent === '+'){
-            setQuantity(quantity+1)
+        else if (textContent === '+') {
+            setQuantity(quantity + 1)
         }
-        else if(textContent === '-'){
-            if(quantity > 0) setQuantity(quantity-1)
+        else if (textContent === '-') {
+            if (quantity > 0) setQuantity(quantity - 1)
         }
     }
 
     return (
-    <>
+        <>
             <div className={classes.backToTap} onClick={() => navigate(-1)}>
                 <h4>Go back</h4>
                 <img className={classes.backToIcon} src={backToIcon} width='20px' height='8px'></img>
@@ -84,7 +84,8 @@ export const ProductCardInfo = () => {
                 </div>
                 : status === 'pending'
                     ? <div>Loading</div>
-                    : <div>Something wrong</div>}
+                    : <div>Something wrong</div>
+            }
         </>
     )
 }
