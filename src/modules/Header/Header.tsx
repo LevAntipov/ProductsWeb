@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import classes from "./Header.module.css";
 import shoppingCart from "../../assets/shoppingCartIcon.png";
 import { SearchBlock } from "./SearchBlock";
+import { BurgerMenu } from "./BurgerMenu";
 
 export const Header = () => {
   const location = useLocation();
@@ -18,11 +19,7 @@ export const Header = () => {
           <img src={shoppingCart} alt="Shopping cart"></img>
         </Link>
       </div>
-      <div className={classes.burgerMenu}>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <BurgerMenu />
     </header>
   );
 };
