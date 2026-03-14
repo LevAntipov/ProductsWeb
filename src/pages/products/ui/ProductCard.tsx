@@ -1,16 +1,25 @@
-import { type FC } from "react";
-import classes from "./ProductCard.module.css";
-import cardInfoIconStar from "../../../assets/cardInfoIconStar.svg";
-import type { ProductCardType } from "../../../types";
-import { useAppSelector } from "../../../shared/hooks";
-import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
 import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
+import { useAppSelector } from "../../../shared/hooks";
+import type {
+  HandleCardClick,
+  ProductId,
+  ProductsQuantity,
+} from "../../../types";
+import cardInfoIconStar from "../../../assets/cardInfoIconStar.svg";
+import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
+import classes from "./ProductCard.module.css";
 
-export const ProductCard: FC<ProductCardType> = ({
+export type ProductCardProps = {
+  id: ProductId;
+  quantity?: ProductsQuantity;
+  handleCardClick: HandleCardClick;
+};
+
+export const ProductCard = ({
   id,
   quantity,
   handleCardClick,
-}) => {
+}: ProductCardProps) => {
   const { decrease, increase } = useChangeProductQuantity(id);
 
   const product = useAppSelector((state) => state.products.entities[id]);
@@ -20,11 +29,11 @@ export const ProductCard: FC<ProductCardType> = ({
 
   return (
     <div className={classes.card}>
-      <div className={classes.image} onClick={(e) => handleCardClick(id)}>
+      <div className={classes.image} onClick={() => handleCardClick(id)}>
         <img src={image}></img>
       </div>
       <div className={classes.info}>
-        <div className={classes.title} onClick={(e) => handleCardClick(id)}>
+        <div className={classes.title} onClick={() => handleCardClick(id)}>
           <div className={classes.itemName}>
             <h3>{title}</h3>
           </div>

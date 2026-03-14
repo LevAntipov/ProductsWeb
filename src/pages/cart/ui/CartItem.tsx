@@ -1,17 +1,12 @@
-import React, { useEffect, useState, type FC } from "react";
-import { useDispatch } from "react-redux";
-
-import classes from "./ProductCartItem.module.css";
-import trashBin from "../../../assets/trashBin.png";
-import type {
-  ProductCartItemType,
-  ProductId,
-  ProductType,
-} from "../../../types";
-import { deleteChosenProduct } from "../../../redux/cartsReducer";
+import React, { useEffect, useState } from "react";
+import type { ProductId, ProductType } from "../../../types";
+import { useAppDispatch } from "../../../shared/hooks";
 import { useNavigate } from "react-router";
 import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
+import { deleteChosenProduct } from "../../../redux/cartsReducer";
 import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
+import trashBin from "../../../assets/trashBin.png";
+import classes from "./CartItem.module.css";
 
 interface ProductCartItemProps {
   id: ProductId;
@@ -19,8 +14,7 @@ interface ProductCartItemProps {
 }
 
 export const CartItem = React.memo(({ id, quantity }: ProductCartItemProps) => {
-  console.log("Render Item ", id);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductType | null>(null);
   const { decrease, increase } = useChangeProductQuantity(id);

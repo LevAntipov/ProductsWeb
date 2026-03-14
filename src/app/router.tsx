@@ -1,16 +1,14 @@
 import { createHashRouter, Navigate, Outlet } from "react-router";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import classes from "./Router.module.css";
-
-import { Header } from "../modules/Header/Header";
-import { Products } from "../modules/Products/Products/Products";
-import { ProductCardInfo } from "../modules/Products/ProductCardInfo/ProductCardInfo";
-import { ProductsCart } from "../modules/Products/ProductsCart/ProductsCart";
 import { checkChosenProducts } from "../redux/cartsReducer";
 import { useAppDispatch } from "../shared/hooks";
-import { Register } from "../modules/Forms/Register";
-import Login from "../modules/Forms/Login";
+import { Layout } from "../shared/ui/Layout/Layout";
+import { CartPage } from "../pages/cart/ui/CartPage";
+import { ProductInfo } from "../pages/product-info/ui/ProductInfo";
+import { ProductPage } from "../pages/products/ui/ProductPage";
+import { Header } from "../shared/ui/Header/Header";
+import { LoginPage, RegisterPage } from "../pages/sign-in";
 
 function Root() {
   const dispatch = useAppDispatch();
@@ -20,12 +18,10 @@ function Root() {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <div className={classes.body}>
-        <Header />
-        <Outlet />
-      </div>
-    </div>
+    <Layout>
+      <Header />
+      <Outlet />
+    </Layout>
   );
 }
 
@@ -40,21 +36,21 @@ export const router = createHashRouter([
       },
       {
         path: "products",
-        Component: Products,
+        Component: ProductPage,
       },
       {
         path: "products/:id",
-        Component: ProductCardInfo,
+        Component: ProductInfo,
       },
       {
         path: "carts",
-        Component: ProductsCart,
+        Component: CartPage,
       },
       {
         path: "auth",
         children: [
-          { index: true, Component: Login },
-          { path: "register", Component: Register },
+          { index: true, Component: LoginPage },
+          { path: "register", Component: RegisterPage },
         ],
       },
     ],

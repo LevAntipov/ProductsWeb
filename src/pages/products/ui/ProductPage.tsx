@@ -1,16 +1,13 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
-
-import type { HandleCardClick } from "../../../types";
-
-import classes from "./Products.module.css";
 import { useAppDispatch, useAppSelector } from "../../../shared/hooks";
-import { ProductCard } from "../ProductCard/ProductCard";
-import { getProducts } from "../../../redux/productsReducer";
 import { selectChosenProducts } from "../../../redux/cartsReducer";
 import { selectFilteredIds } from "../../../shared/selectors";
+import { useNavigate } from "react-router";
+import { getProducts } from "../../../redux/productsReducer";
+import { ProductCard } from "./ProductCard";
+import classes from "./ProductsPage.module.css";
 
-export const Products = () => {
+export const ProductPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -21,7 +18,7 @@ export const Products = () => {
     dispatch(getProducts());
   }, []);
 
-  const handleCardClick: HandleCardClick = (id) => {
+  const handleCardClick = (id: number) => {
     navigate(`/products/${id}`);
   };
 

@@ -112,23 +112,6 @@ a {
     display: none;
 }
 
-.searchButton {
-    width: 40px;
-    border: none;
-    background-color: inherit;
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.2s ease;
-}
-
-.searchButton:hover {
-    background-color: #43bad2;
-}
-
-.searchButton img {
-    width: 30px;
-}
-
 .burgerContainer {
     display: none;
     position: relative;

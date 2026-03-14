@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../shared/hooks";
-import type { FilterMethodType } from "../../types";
-import { setFilter } from "../../redux/productsReducer";
-import showMoreIcon from "../../assets/showMoreIcon.png";
-import selectedIcon from "../../assets/selectedIcon.png";
+import { useAppDispatch } from "../../hooks";
+import type { FilterMethodType } from "../../../types";
+import { setFilter } from "../../../redux/productsReducer";
+import showMoreIcon from "../../../assets/showMoreIcon.png";
+import selectedIcon from "../../../assets/selectedIcon.png";
 import classes from "./Header.module.css";
 
 interface FilterMenuProps {
