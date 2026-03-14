@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import classes from "./Forms.module.css";
 import { authClient } from "../../../lib/auth-client";
-import { Input } from "../../../shared/ui/Input";
+import { Input } from "../../../shared/ui/Input/Input";
 
 export default function Login() {
   const [email, setEmail] = useState("");

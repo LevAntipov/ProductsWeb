@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { authClient } from "../../lib/auth-client";
-import { Input } from "../../shared/ui/Input";
+import { Input } from "../../shared/ui/Input/Input";
 import { Link } from "react-router";
 import classes from "./Forms.module.css";
-import { FieldError } from "../../shared/ui/FieldError";
+import { FieldError } from "../../shared/ui/FieldError/FieldError";
 import { error } from "better-auth/api";
 
 export default function Login() {

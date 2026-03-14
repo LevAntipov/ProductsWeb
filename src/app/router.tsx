@@ -1,7 +1,5 @@
 import { createHashRouter, Navigate, Outlet } from "react-router";
-import React, { useEffect, useState } from "react";
-
-import classes from "./Router.module.css";
+import { useEffect } from "react";
 
 import { Header } from "../modules/Header/Header";
 import { Products } from "../modules/Products/Products/Products";
@@ -11,6 +9,7 @@ import { checkChosenProducts } from "../redux/cartsReducer";
 import { useAppDispatch } from "../shared/hooks";
 import { Register } from "../modules/Forms/Register";
 import Login from "../modules/Forms/Login";
+import { Layout } from "../shared/ui/Layout/Layout";
 
 function Root() {
   const dispatch = useAppDispatch();
@@ -20,12 +19,10 @@ function Root() {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <div className={classes.body}>
-        <Header />
-        <Outlet />
-      </div>
-    </div>
+    <Layout>
+      <Header />
+      <Outlet />
+    </Layout>
   );
 }
 

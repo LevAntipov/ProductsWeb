@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { authClient } from "../../lib/auth-client";
-import { Input } from "../../shared/ui/Input";
-import { FieldError } from "../../shared/ui/FieldError";
+import { Input } from "../../shared/ui/Input/Input";
+import { FieldError } from "../../shared/ui/FieldError/FieldError";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
