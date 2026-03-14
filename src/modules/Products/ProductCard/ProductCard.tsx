@@ -47,7 +47,7 @@ export const ProductCard: FC<ProductCardType> = ({
           </div>
           {quantity === undefined ? (
             <button
-              onClick={() => increase(1)}
+              onClick={() => increase()}
               className={classes.purchaseButton}
               type="button"
             >
@@ -55,8 +55,8 @@ export const ProductCard: FC<ProductCardType> = ({
             </button>
           ) : (
             <QuantityControl
-              onDecrement={() => decrease(1)}
-              onIncrement={() => increase(1)}
+              onDecrement={() => decrease()}
+              onIncrement={() => increase()}
               quantity={quantity}
             />
           )}

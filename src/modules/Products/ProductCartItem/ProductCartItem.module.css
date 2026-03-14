@@ -24,15 +24,14 @@
 .infoBlock{
     display: flex;
     flex-direction: column;
-justify-content: space-between;
+    justify-content: space-between;
 }
 .title{
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
 }
 
 .priceBlock{
-    display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
@@ -59,35 +58,5 @@ justify-content: space-between;
 }
 .trashBin:hover{
     background-color: #cc5555;
-}
-
-.buttonsBlock{
-    display: flex;
-    column-gap: 5px;
-    align-items: center;
-}
-
-.decreaseButton,
-.increaseButton{
-    padding-inline: 15px;
-    border: none;
-    background-color: inherit;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-}
-
-.decreaseButton{
-    background-color: #E26D6D;
-}
-
-.decreaseButton:hover{
-    background-color: #cc5555;
-}
-
-.increaseButton{
-    background-color: #5FBF88;
-}
-.increaseButton:hover{
-    background-color: #4fa878;
 }
 

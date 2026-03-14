@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import React, { useEffect, useState, type FC } from "react";
 import { useDispatch } from "react-redux";
 
 import classes from "./ProductCartItem.module.css";
@@ -13,9 +13,13 @@ import { useNavigate } from "react-router";
 import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
 import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
 
-export const CartItem: FC<ProductCartItemType> = (props) => {
-  const { id, quantity } = props;
+interface ProductCartItemProps {
+  id: ProductId;
+  quantity: number;
+}
 
+export const CartItem = React.memo(({ id, quantity }: ProductCartItemProps) => {
+  console.log("Render Item ", id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductType | null>(null);
@@ -54,8 +58,8 @@ export const CartItem: FC<ProductCartItemType> = (props) => {
             <div className={classes.priceBlock}>
               <span className={classes.price}>${product.price}</span>
               <QuantityControl
-                onDecrement={decrease}
-                onIncrement={increase}
+                onDecrement={() => decrease()}
+                onIncrement={() => increase()}
                 quantity={quantity}
               />
             </div>
@@ -76,4 +80,4 @@ export const CartItem: FC<ProductCartItemType> = (props) => {
       )}
     </div>
   );
-};
+});

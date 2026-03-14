@@ -26,8 +26,10 @@ export const ProductCardInfo = () => {
   }, []);
 
   const handleAddButtonClick = () => {
-    increase(quantity);
-    setQuantity(0);
+    if (quantity > 0) {
+      increase(quantity);
+      setQuantity(0);
+    }
   };
 
   return (
@@ -80,7 +82,7 @@ export const ProductCardInfo = () => {
                 <QuantityControl
                   quantity={quantity}
                   onIncrement={() => setQuantity((p) => p + 1)}
-                  onDecrement={() => setQuantity((p) => p - 1)}
+                  onDecrement={() => quantity >= 1 && setQuantity((p) => p - 1)}
                 />
               </div>
               <button

@@ -49,6 +49,7 @@ const cartsReducer = createSlice({
     },
     increaseQuantity: (state, action: PayloadAction<QuantityAction>) => {
       const { id, quantity } = action.payload;
+      debugger;
       if (!state.chosenProducts[id]) {
         state.chosenProducts[id] = quantity;
       } else {
