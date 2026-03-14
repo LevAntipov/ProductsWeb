@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 
 import { store } from "./redux/store.ts";
-import { router } from "./router.tsx";
+import { router } from "./app/router.tsx";
 import "./normalize.css";
 import { Provider } from "react-redux";
 

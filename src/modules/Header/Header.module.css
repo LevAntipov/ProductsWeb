@@ -129,19 +129,6 @@ a {
     width: 30px;
 }
 
-.searchBlock input {
-    background-color: rgba(68, 63, 84, 0.421);
-    border: 1px solid rgb(57, 55, 78);
-    color: #E6E6E6;
-    font-weight: 100;
-    border-radius: 5px;
-    outline: none;
-}
-
-.searchBlock input::placeholder {
-    color: #E6E6E6;
-}
-
 .burgerContainer {
     display: none;
     position: relative;

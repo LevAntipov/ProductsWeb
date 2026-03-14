@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useDebounce } from "../../shared/hooks";
 import { setFilter } from "../../redux/productsReducer";
+import { Input } from "../../shared/ui/Input";
 
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
@@ -12,11 +13,11 @@ export const SearchInput = () => {
     dispatch(setFilter({ str: debouncedSearchValue }));
   }, [debouncedSearchValue, dispatch]);
   return (
-    <input
-      value={searchValue}
-      onChange={(e) => setSearchValue(e.target.value)}
+    <Input
       type="text"
       placeholder="Search something"
-    ></input>
+      value={searchValue}
+      onChange={setSearchValue}
+    />
   );
 };

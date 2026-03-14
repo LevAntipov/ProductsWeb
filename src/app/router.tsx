@@ -1,14 +1,16 @@
 import { createHashRouter, Navigate, Outlet } from "react-router";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./Router.module.css";
 
-import { Header } from "./modules/Header/Header";
-import { Products } from "./modules/Products/Products/Products";
-import { ProductCardInfo } from "./modules/Products/ProductCardInfo/ProductCardInfo";
-import { ProductsCart } from "./modules/Products/ProductsCart/ProductsCart";
-import { checkChosenProducts } from "./redux/cartsReducer";
-import { useAppDispatch } from "./shared/hooks";
+import { Header } from "../modules/Header/Header";
+import { Products } from "../modules/Products/Products/Products";
+import { ProductCardInfo } from "../modules/Products/ProductCardInfo/ProductCardInfo";
+import { ProductsCart } from "../modules/Products/ProductsCart/ProductsCart";
+import { checkChosenProducts } from "../redux/cartsReducer";
+import { useAppDispatch } from "../shared/hooks";
+import { Register } from "../modules/Forms/Register";
+import Login from "../modules/Forms/Login";
 
 function Root() {
   const dispatch = useAppDispatch();
@@ -47,6 +49,13 @@ export const router = createHashRouter([
       {
         path: "carts",
         Component: ProductsCart,
+      },
+      {
+        path: "auth",
+        children: [
+          { index: true, Component: Login },
+          { path: "register", Component: Register },
+        ],
       },
     ],
   },

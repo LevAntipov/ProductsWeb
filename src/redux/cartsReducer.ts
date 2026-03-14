@@ -12,6 +12,11 @@ type productActionPayload = {
   id: number;
 };
 
+interface QuantityAction {
+  id: ProductId;
+  quantity: number;
+}
+
 const initialState: initialStateType = {
   chosenProducts: {},
   chosenProductsData: {},
@@ -34,39 +39,20 @@ const cartsReducer = createSlice({
         state.chosenProducts = {};
       }
     },
-    addProduct: (
-      state,
-      payload: PayloadAction<{ id: ProductId; quantity: ProductsQuantity }>,
-    ) => {
-      const { id, quantity } = payload.payload;
-      if (state.chosenProducts[id]) {
-        state.chosenProducts[id] = state.chosenProducts[id] + quantity;
-      } else {
-        state.chosenProducts[id] = quantity;
+    decreaseQuantity: (state, action: PayloadAction<QuantityAction>) => {
+      const { id, quantity } = action.payload;
+
+      state.chosenProducts[id] -= quantity;
+      if (state.chosenProducts[id] <= 0) {
+        delete state.chosenProducts[id];
       }
     },
-    actionWithProduct: (state, action: PayloadAction<productActionPayload>) => {
-      const id = action.payload.id;
-
-      if (action.payload.operation === "add") {
-        state.chosenProducts[id] = 1;
-      } else if (action.payload.operation === "increase") {
-        state.chosenProducts[id] = state.chosenProducts[id] + 1;
-      } else if (action.payload.operation === "decrease") {
-        const quantity = state.chosenProducts[id];
-
-        if (quantity == 1) {
-          const entries = Object.entries(state.chosenProducts).filter(
-            (item) => {
-              if (+item[0] !== id) {
-                return item;
-              }
-            },
-          );
-          state.chosenProducts = Object.fromEntries(entries);
-        } else {
-          state.chosenProducts[id] = state.chosenProducts[id] - 1;
-        }
+    increaseQuantity: (state, action: PayloadAction<QuantityAction>) => {
+      const { id, quantity } = action.payload;
+      if (!state.chosenProducts[id]) {
+        state.chosenProducts[id] = quantity;
+      } else {
+        state.chosenProducts[id] = state.chosenProducts[id] + quantity;
       }
     },
     deleteChosenProduct: (state, id: PayloadAction<ProductId>) => {
@@ -84,9 +70,9 @@ const cartsReducer = createSlice({
 const { actions, selectors, reducer } = cartsReducer;
 
 export const {
-  actionWithProduct,
+  decreaseQuantity,
+  increaseQuantity,
   deleteChosenProduct,
-  addProduct,
   checkChosenProducts,
 } = actions;
 export const { selectChosenProducts } = selectors;

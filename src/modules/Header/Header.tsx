@@ -13,7 +13,7 @@ export const Header = () => {
       <Link to={"/products"} className={classes.shopName}>
         Antipov's shop
       </Link>
-      {location.pathname !== "/carts" && <SearchBlock />}
+      {location.pathname == "/products" && <SearchBlock />}
       <div>
         <Link to={"/carts"} className={classes.shoppingCart}>
           <img src={shoppingCart} alt="Shopping cart"></img>
