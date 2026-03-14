@@ -1,7 +1,7 @@
-import type { FilterMethodType } from "../../types";
+import type { FilterMethodType } from "../../../types";
 import { FilterMenu } from "./FilterMenu";
-import { SearchInput } from "./SearchInput";
 import classes from "./Header.module.css";
+import { SearchInput } from "./SearchInput";
 
 const FILTER_OPTIONS: FilterMethodType[] = [
   "no filter",

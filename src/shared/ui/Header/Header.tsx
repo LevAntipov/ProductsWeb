@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
-import { SearchBlock } from "../../../modules/Header/SearchBlock";
-import { BurgerMenu } from "../../../modules/Header/BurgerMenu";
+import { SearchBlock } from "./SearchBlock";
+import { BurgerMenu } from "./BurgerMenu";
 import classes from "./Header.module.css";
 import shoppingCart from "../../../assets/shoppingCartIcon.png";
 

@@ -3,7 +3,7 @@ import { FieldError } from "../../../shared/ui/FieldError/FieldError";
 import classes from "./sign-in.module.css";
 import { useRegister } from "../api/useRegister";
 
-export const Register = () => {
+export const RegisterPage = () => {
   const {
     email,
     password,

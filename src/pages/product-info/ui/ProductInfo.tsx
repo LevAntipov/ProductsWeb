@@ -8,7 +8,7 @@ import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityCon
 import cardInfoIconStar from "../../../assets/cardInfoIconStar.svg";
 import backToIcon from "../../../assets/backToIcon.png";
 
-export const ProductCardInfo = () => {
+export const ProductInfo = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
