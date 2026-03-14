@@ -7,11 +7,6 @@ type initialStateType = {
   chosenProductsData: Record<ProductId, ProductType>;
 };
 
-type productActionPayload = {
-  operation: "add" | "increase" | "decrease";
-  id: number;
-};
-
 interface QuantityAction {
   id: ProductId;
   quantity: number;

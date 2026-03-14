@@ -1,7 +1,7 @@
+import { useAppSelector } from "@shared/hooks";
 import { selectChosenProducts } from "../../../redux/cartsReducer";
-import { useAppSelector } from "../../../shared/hooks";
-import { CartItem } from "./CartItem";
 import classes from "./CartPage.module.css";
+import { CartItem } from "./CartItem";
 
 export const CartPage = () => {
   const products = useAppSelector(selectChosenProducts); // {id:qnty,id2:qnty2}

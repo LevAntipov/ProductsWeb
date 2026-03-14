@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import type { ProductId, ProductType } from "../../../types";
-import { useAppDispatch } from "../../../shared/hooks";
 import { useNavigate } from "react-router";
-import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
-import { deleteChosenProduct } from "../../../redux/cartsReducer";
-import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
-import trashBin from "../../../assets/trashBin.png";
+import trashBin from "@assets/trashBin.png";
 import classes from "./CartItem.module.css";
+import { useAppDispatch } from "@shared/hooks";
+import type { ProductId, ProductType } from "types";
+import { deleteChosenProduct } from "redux/cartsReducer";
+import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
+import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
 
 interface ProductCartItemProps {
   id: ProductId;

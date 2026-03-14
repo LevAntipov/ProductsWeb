@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../shared/hooks";
 import { selectChosenProducts } from "../../../redux/cartsReducer";
-import { selectFilteredIds } from "../../../shared/selectors";
 import { useNavigate } from "react-router";
 import { getProducts } from "../../../redux/productsReducer";
 import { ProductCard } from "./ProductCard";
 import classes from "./ProductsPage.module.css";
+import { useAppDispatch, useAppSelector } from "@shared/hooks";
+import { selectFilteredIds } from "@shared/selectors";
 
 export const ProductPage = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
+import { authClient } from "lib/auth-client";
 import { useState } from "react";
-import { authClient } from "../../../lib/auth-client";
 
 export const useRegister = () => {
   const [email, setEmail] = useState("");

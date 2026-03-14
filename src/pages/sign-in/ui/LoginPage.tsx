@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import classes from "./sign-in.module.css";
 import { useLogin } from "../api/useLogin";
-import { Input } from "../../../shared/ui/Input/Input";
-import { FieldError } from "../../../shared/ui/FieldError/FieldError";
+import { Input } from "@shared/ui/Input/Input";
+import { FieldError } from "@shared/ui/FieldError/FieldError";
 
 export function LoginPage() {
   const { email, password, error, handleLogin, setEmail, setPassword } =

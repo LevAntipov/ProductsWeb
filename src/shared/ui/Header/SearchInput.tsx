@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useDebounce } from "../../hooks";
 import { setFilter } from "../../../redux/productsReducer";
+import { useAppDispatch, useDebounce } from "@shared/hooks";
 import { Input } from "../Input/Input";
 
 export const SearchInput = () => {

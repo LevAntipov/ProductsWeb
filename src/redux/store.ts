@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import productsReducer from "./productsReducer";
 import cartsReducer from "./cartsReducer";
 

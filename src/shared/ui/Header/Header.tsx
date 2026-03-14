@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import { SearchBlock } from "./SearchBlock";
 import { BurgerMenu } from "./BurgerMenu";
 import classes from "./Header.module.css";
-import shoppingCart from "../../../assets/shoppingCartIcon.png";
+import shoppingCart from "@assets/shoppingCartIcon.png";
 
 export const Header = () => {
   const location = useLocation();

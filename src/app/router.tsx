@@ -1,14 +1,13 @@
-import { createHashRouter, Navigate, Outlet } from "react-router";
+import { CartPage } from "@pages/cart/ui/CartPage";
+import { ProductInfo } from "@pages/product-info/ui/ProductInfo";
+import { ProductPage } from "@pages/products/ui/ProductPage";
+import { LoginPage, RegisterPage } from "@pages/sign-in";
+import { useAppDispatch } from "@shared/hooks";
+import { Header } from "@shared/ui/Header/Header";
+import { Layout } from "@shared/ui/Layout/Layout";
 import { useEffect } from "react";
-
-import { checkChosenProducts } from "../redux/cartsReducer";
-import { useAppDispatch } from "../shared/hooks";
-import { Layout } from "../shared/ui/Layout/Layout";
-import { CartPage } from "../pages/cart/ui/CartPage";
-import { ProductInfo } from "../pages/product-info/ui/ProductInfo";
-import { ProductPage } from "../pages/products/ui/ProductPage";
-import { Header } from "../shared/ui/Header/Header";
-import { LoginPage, RegisterPage } from "../pages/sign-in";
+import { createHashRouter, Navigate, Outlet } from "react-router";
+import { checkChosenProducts } from "redux/cartsReducer";
 
 function Root() {
   const dispatch = useAppDispatch();

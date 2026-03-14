@@ -1,13 +1,9 @@
-import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
-import { useAppSelector } from "../../../shared/hooks";
-import type {
-  HandleCardClick,
-  ProductId,
-  ProductsQuantity,
-} from "../../../types";
-import cardInfoIconStar from "../../../assets/cardInfoIconStar.svg";
-import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
+import cardInfoIconStar from "@assets/cardInfoIconStar.svg";
 import classes from "./ProductCard.module.css";
+import type { HandleCardClick, ProductId, ProductsQuantity } from "types";
+import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
+import { useAppSelector } from "@shared/hooks";
+import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
 
 export type ProductCardProps = {
   id: ProductId;

@@ -1,12 +1,13 @@
 import { useNavigate, useParams } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../../shared/hooks";
 import { useEffect, useState } from "react";
-import { useChangeProductQuantity } from "../../../features/product/change-product-quantity/model/useChangeProductQuantity";
 import { getProduct } from "../../../redux/productsReducer";
 import classes from "./ProductInfo.module.css";
-import { QuantityControl } from "../../../shared/ui/quantity-control/QuantityControl";
-import cardInfoIconStar from "../../../assets/cardInfoIconStar.svg";
-import backToIcon from "../../../assets/backToIcon.png";
+
+import cardInfoIconStar from "@assets/cardInfoIconStar.svg";
+import backToIcon from "@assets/backToIcon.png";
+import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
+import { useAppDispatch, useAppSelector } from "@shared/hooks";
+import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
 
 export const ProductInfo = () => {
   const navigate = useNavigate();
