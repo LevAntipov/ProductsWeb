@@ -1,5 +1,5 @@
-import type { RootState } from "@redux/store";
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "app/store";
 
 export const selectProductsState = (state: RootState) => state.products;
 export const selectEntities = (state: RootState) => state.products.entities;

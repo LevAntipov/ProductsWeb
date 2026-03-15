@@ -1,9 +1,6 @@
-import {
-  decreaseQuantity,
-  increaseQuantity,
-} from "../../../../redux/cartsReducer";
-import { useAppDispatch } from "../../../../shared/hooks";
-import type { ProductId } from "../../../../types";
+import type { ProductId } from "@entities/product/model/types";
+import { useAppDispatch } from "../../../../shared/lib/hooks";
+import { decreaseQuantity, increaseQuantity } from "@entities/cart/model/slice";
 
 export const useChangeProductQuantity = (id: ProductId) => {
   const dispatch = useAppDispatch();

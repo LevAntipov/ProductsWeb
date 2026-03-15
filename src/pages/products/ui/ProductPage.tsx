@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useAppDispatch, useAppSelector } from "@shared/hooks";
-import { getProducts } from "@redux/productsReducer";
+import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
 import {
   selectFetchProductsStatus,
   selectFilteredIds,
@@ -10,6 +9,7 @@ import {
 import { ProductsList } from "./ProductsList";
 import { Loader } from "@shared/ui/Loader/Loader";
 import { selectChosenProducts } from "@entities/cart/model/selectors";
+import { getProducts } from "@entities/product/model/slice";
 
 export const ProductsPage = () => {
   const dispatch = useAppDispatch();

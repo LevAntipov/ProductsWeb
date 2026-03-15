@@ -28,9 +28,9 @@
     "paths": {
       "@assets/*": ["./assets/*"],
       "@pages/*": ["./pages/*"],
-      "@redux/*": ["./redux/*"],
       "@entities/*": ["./entities/*"],
       "@shared/*": ["./shared/*"],
+      "@widgets/*": ["./widgets/*"],
       "@features/*": ["./features/*"],
     },
   },

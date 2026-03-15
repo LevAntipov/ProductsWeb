@@ -1,4 +1,4 @@
-import { useAppSelector } from "@shared/hooks";
+import { useAppSelector } from "@shared/lib/hooks";
 import classes from "./PaymentBlock.module.css";
 import {
   selectProductsAmount,

@@ -3,9 +3,8 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-
-import type { FilterMethodType, ProductType } from "../types";
-import type { StatusType } from "../types";
+import type { FilterMethodType, ProductType } from "./types";
+import type { StatusType } from "@shared/types";
 
 type initialStateType = {
   ids: number[];
@@ -113,8 +112,7 @@ export const productsReducer = createSlice({
   },
 });
 
-const { actions, selectors, reducer } = productsReducer;
+const { actions, reducer } = productsReducer;
 
 export const { setFilter } = actions;
-export const {} = selectors;
 export default reducer;

@@ -10,14 +10,18 @@ type Props = {
 export const ProductsList = ({ ids, quantities, onOpenProduct }: Props) => {
   return (
     <div className={classes.container}>
-      {ids.map((id) => (
-        <ProductCard
-          key={id}
-          id={id}
-          quantity={quantities[id]}
-          onOpen={() => onOpenProduct(id)}
-        />
-      ))}
+      {ids.length ? (
+        ids.map((id) => (
+          <ProductCard
+            key={id}
+            id={id}
+            quantity={quantities[id]}
+            onOpen={() => onOpenProduct(id)}
+          />
+        ))
+      ) : (
+        <div>No products</div>
+      )}
     </div>
   );
 };

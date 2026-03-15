@@ -1,11 +1,11 @@
+import productsReducer from "@entities/product/model/slice";
+import cartReducer from "@entities/cart/model/slice";
 import { configureStore } from "@reduxjs/toolkit";
-import productsReducer from "./productsReducer";
-import cartsReducer from "./cartsReducer";
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
-    carts: cartsReducer,
+    carts: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(cartMiddleware),

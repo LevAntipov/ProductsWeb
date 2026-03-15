@@ -1,11 +1,10 @@
+import type { ProductsQuantity } from "@entities/cart/model/types";
+import type { ProductId, ProductType } from "@entities/product/model/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-import type { ProductId, ProductsQuantity, ProductType } from "../types";
 
 type initialStateType = {
   chosenProducts: Record<ProductId, ProductsQuantity>;
   chosenProductsData: Record<ProductId, ProductType>;
-  totalCartPrice: number;
 };
 
 interface QuantityAction {
@@ -16,15 +15,11 @@ interface QuantityAction {
 const initialState: initialStateType = {
   chosenProducts: {},
   chosenProductsData: {},
-  totalCartPrice: 0,
 };
 
 const cartsReducer = createSlice({
   name: "carts",
   initialState,
-  selectors: {
-    selectChosenProducts: (state) => state.chosenProducts,
-  },
   reducers: {
     checkChosenProducts: (state) => {
       let storedCart = window.localStorage.getItem("cart");
@@ -63,7 +58,7 @@ const cartsReducer = createSlice({
   },
 });
 
-const { actions, selectors, reducer } = cartsReducer;
+const { actions, reducer } = cartsReducer;
 
 export const {
   decreaseQuantity,
@@ -71,6 +66,5 @@ export const {
   deleteChosenProduct,
   checkChosenProducts,
 } = actions;
-export const { selectChosenProducts } = selectors;
 
 export default reducer;

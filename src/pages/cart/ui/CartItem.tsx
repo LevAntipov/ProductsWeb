@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 import trashBin from "@assets/trashBin.png";
 import classes from "./CartItem.module.css";
-import { useAppDispatch } from "@shared/hooks";
-import type { ProductId, ProductType } from "types";
-import { deleteChosenProduct } from "redux/cartsReducer";
+import { useAppSelector } from "@shared/lib/hooks";
 import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
 import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
+import { useRemoveCartProduct } from "@features/cart/remove-cart-product/model/useRemoveCartProduct";
+import type { ProductId } from "@entities/product/model/types";
 
 interface ProductCartItemProps {
   id: ProductId;
@@ -14,10 +14,11 @@ interface ProductCartItemProps {
 }
 
 export const CartItem = React.memo(({ id, quantity }: ProductCartItemProps) => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [product, setProduct] = useState<ProductType | null>(null);
   const { decrease, increase } = useChangeProductQuantity(id);
+  const { removeProduct } = useRemoveCartProduct(id);
+
+  const product = useAppSelector((state) => state.products.entities[id]);
 
   let totalProductPrice = "0";
 
@@ -25,17 +26,8 @@ export const CartItem = React.memo(({ id, quantity }: ProductCartItemProps) => {
     totalProductPrice = (product.price * quantity).toFixed(2);
   }
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
-
   const handleNavigate = () => {
     navigate(`/products/${id}`);
-  };
-  const handleDeleteCartProduct = (id: ProductId) => {
-    dispatch(deleteChosenProduct(id));
   };
 
   return (
@@ -63,7 +55,7 @@ export const CartItem = React.memo(({ id, quantity }: ProductCartItemProps) => {
             <button
               type="button"
               className={classes.trashBin}
-              onClick={() => handleDeleteCartProduct(id)}
+              onClick={() => removeProduct()}
             >
               <img src={trashBin}></img>
             </button>

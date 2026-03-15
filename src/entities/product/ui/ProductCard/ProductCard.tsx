@@ -1,7 +1,7 @@
 import cardInfoIconStar from "@assets/cardInfoIconStar.svg";
 import classes from "./ProductCard.module.css";
 import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
-import { useAppSelector } from "@shared/hooks";
+import { useAppSelector } from "@shared/lib/hooks";
 import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
 
 export interface ProductCardProps {
