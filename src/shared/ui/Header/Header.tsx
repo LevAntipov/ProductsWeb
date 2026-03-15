@@ -7,9 +7,13 @@ import shoppingCart from "@assets/shoppingCartIcon.png";
 export const Header = () => {
   const location = useLocation();
 
+  const logoClassName =
+    location.pathname == "/products"
+      ? `${classes.productsLogo} ${classes.shopName}`
+      : `${classes.cartLogo} ${classes.shopName}`;
   return (
     <header className={classes.header}>
-      <Link to={"/products"} className={classes.shopName}>
+      <Link to={"/products"} className={logoClassName}>
         Antipov's shop
       </Link>
       {location.pathname == "/products" && <SearchBlock />}

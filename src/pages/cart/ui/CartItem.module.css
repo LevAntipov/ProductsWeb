@@ -1,6 +1,5 @@
 .container{
     display: flex;
-    width: 65%;
     column-gap: 20px;
     padding: 40px 20px;
     background-color: rgba(68, 63, 84, 0.421);

@@ -7,7 +7,8 @@ export const selectIds = (state: RootState) => state.products.ids;
 export const selectFilterStr = (state: RootState) => state.products.filter.str;
 export const selectFilterMethod = (state: RootState) =>
   state.products.filter.method;
-
+export const selectFetchProductsStatus = (state: RootState) =>
+  state.products.fetchProductsStatus;
 export const selectFilteredIds = createSelector(
   [selectIds, selectEntities, selectFilterStr, selectFilterMethod],
   (ids, entities, str, method) => {
@@ -45,5 +46,33 @@ export const selectFilteredIds = createSelector(
       );
     }
     return ids;
+  },
+);
+
+//cart
+
+export const selectChosenProducts = (state: RootState) =>
+  state.carts.chosenProducts;
+export const selectTotalCartPrice = createSelector(
+  [selectChosenProducts, selectEntities],
+  (chosenProducts, productsEntities) => {
+    return Object.entries(chosenProducts)
+      .reduce((total, [id, quantity]) => {
+        const product = productsEntities[Number(id)];
+        if (product) {
+          return total + product.price * quantity;
+        }
+        return total;
+      }, 0)
+      .toFixed(2);
+  },
+);
+export const selectProductsAmount = createSelector(
+  [selectChosenProducts],
+  (chosenProducts) => {
+    return Object.values(chosenProducts).reduce(
+      (acc, quantity) => acc + quantity,
+      0,
+    );
   },
 );

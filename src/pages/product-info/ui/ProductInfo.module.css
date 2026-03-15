@@ -116,29 +116,6 @@
     font-size: 16px;
 }
 
-.decreaseButton,
-.increaseButton{
-    padding-inline: 15px;
-    border: none;
-    background-color: inherit;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-}
-
-.decreaseButton{
-    background-color: #E26D6D;
-}
-.decreaseButton:hover{
-    background-color: #cc5555;
-}
-
-.increaseButton{
-    background-color: #5FBF88;
-}
-.increaseButton:hover{
-    background-color: #4fa878;
-}
-
 .purchachesBlock{
     display: flex;
     flex-direction: column;

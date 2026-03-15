@@ -1,0 +1,97 @@
+.paymentBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(68, 63, 84, 0.421);
+    min-width: 280px;
+    height: auto;
+}
+
+.paymentTable {
+    width: 100%;
+    border-collapse: collapse;  /* убираем двойные границы */
+    margin-bottom: 16px;
+}
+
+/* Стили для всех ячеек */
+.paymentTable td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e0e0e0;  /* линия между строками */
+}
+
+/* Убираем нижнюю границу у последней строки с заказом */
+.paymentTable tr:last-of-type td {
+    border-bottom: none;
+}
+
+/* Жирный шрифт для Order summary */
+.paymentTable tr:first-child td:first-child {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Жирный шрифт для OrderTotal */
+.paymentTable tr:last-child td:first-child {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Жирный шрифт для суммы OrderTotal */
+.paymentTable tr:last-child td:last-child {
+    font-weight: 700;
+}
+
+/* Выравнивание чисел по правому краю */
+.paymentTable td:last-child {
+    text-align: right;
+    font-weight: 500;
+}
+
+/* Стили для сообщения о бесплатной доставке */
+.paymentBlock span {
+    display: block;
+    padding: 12px 8px;
+    background-color: #f0f9ff;  /* легкий голубой фон */
+    color: #0369a1;
+    font-size: 0.9em;
+    border-radius: 6px;
+    margin-top: 8px;
+    text-align: center;
+    border-left: 3px solid #0ea5e9;  /* акцентная полоска слева */
+    margin-block: 10px;
+}
+
+/* Альтернативный вариант: черта после Order summary */
+.paymentTable tr:first-child td {
+    border-bottom: 2px solid #333;  /* жирная черта после первой строки */
+}
+
+/* Или если хотите отдельную черту между summary и остальным */
+/* .paymentTable::after {
+    content: '';
+    display: table-row;
+    height: 10px;
+} */
+
+.purchaseButton {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #5C6BC0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: auto;
+}
+
+.purchaseButton:hover {
+    background-color: #4fa878
+}
+
+.purchaseButton:active {
+    transform: translateY(1px);
+}

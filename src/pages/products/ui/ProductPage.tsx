@@ -5,7 +5,11 @@ import { getProducts } from "../../../redux/productsReducer";
 import { ProductCard } from "./ProductCard";
 import classes from "./ProductsPage.module.css";
 import { useAppDispatch, useAppSelector } from "@shared/hooks";
-import { selectFilteredIds } from "@shared/selectors";
+import {
+  selectFetchProductsStatus,
+  selectFilteredIds,
+} from "@shared/selectors";
+import { Loader } from "@shared/ui/Loader/Loader";
 
 export const ProductPage = () => {
   const navigate = useNavigate();
@@ -13,6 +17,7 @@ export const ProductPage = () => {
 
   const chosenProducts = useAppSelector(selectChosenProducts);
   const filteredIds = useAppSelector(selectFilteredIds);
+  const fetchProductStatus = useAppSelector(selectFetchProductsStatus);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -21,6 +26,8 @@ export const ProductPage = () => {
   const handleCardClick = (id: number) => {
     navigate(`/products/${id}`);
   };
+
+  if (fetchProductStatus == "pending") return <Loader />;
 
   if (filteredIds.length === 0) {
     return <div className={classes.container}>No products</div>;

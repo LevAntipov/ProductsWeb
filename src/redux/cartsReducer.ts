@@ -5,6 +5,7 @@ import type { ProductId, ProductsQuantity, ProductType } from "../types";
 type initialStateType = {
   chosenProducts: Record<ProductId, ProductsQuantity>;
   chosenProductsData: Record<ProductId, ProductType>;
+  totalCartPrice: number;
 };
 
 interface QuantityAction {
@@ -15,6 +16,7 @@ interface QuantityAction {
 const initialState: initialStateType = {
   chosenProducts: {},
   chosenProductsData: {},
+  totalCartPrice: 0,
 };
 
 const cartsReducer = createSlice({
@@ -36,7 +38,6 @@ const cartsReducer = createSlice({
     },
     decreaseQuantity: (state, action: PayloadAction<QuantityAction>) => {
       const { id, quantity } = action.payload;
-
       state.chosenProducts[id] -= quantity;
       if (state.chosenProducts[id] <= 0) {
         delete state.chosenProducts[id];
@@ -44,7 +45,6 @@ const cartsReducer = createSlice({
     },
     increaseQuantity: (state, action: PayloadAction<QuantityAction>) => {
       const { id, quantity } = action.payload;
-      debugger;
       if (!state.chosenProducts[id]) {
         state.chosenProducts[id] = quantity;
       } else {
