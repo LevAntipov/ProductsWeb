@@ -1,6 +1,9 @@
 import { useAppSelector } from "@shared/hooks";
 import classes from "./PaymentBlock.module.css";
-import { selectProductsAmount, selectTotalCartPrice } from "@shared/selectors";
+import {
+  selectProductsAmount,
+  selectTotalCartPrice,
+} from "@entities/cart/model/selectors";
 
 export const PaymentBlock = () => {
   const totalPrice = useAppSelector(selectTotalCartPrice);

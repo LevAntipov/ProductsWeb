@@ -1,9 +1,8 @@
 import { CartPage } from "@pages/cart/ui/CartPage";
 import { ProductInfo } from "@pages/product-info/ui/ProductInfo";
-import { ProductPage } from "@pages/products/ui/ProductPage";
+import { ProductsPage } from "@pages/products/ui/ProductPage";
 import { LoginPage, RegisterPage } from "@pages/sign-in";
-import { useAppDispatch, useAppSelector } from "@shared/hooks";
-import { selectEntities } from "@shared/selectors";
+import { useAppDispatch } from "@shared/hooks";
 import { Header } from "@shared/ui/Header/Header";
 import { Layout } from "@shared/ui/Layout/Layout";
 import { useEffect } from "react";
@@ -41,7 +40,7 @@ export const router = createHashRouter([
       },
       {
         path: "products",
-        Component: ProductPage,
+        Component: ProductsPage,
       },
       {
         path: "products/:id",

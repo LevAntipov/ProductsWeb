@@ -1,51 +1,39 @@
 import { useEffect } from "react";
-import { selectChosenProducts } from "../../../redux/cartsReducer";
 import { useNavigate } from "react-router";
-import { getProducts } from "../../../redux/productsReducer";
-import { ProductCard } from "./ProductCard";
-import classes from "./ProductsPage.module.css";
 import { useAppDispatch, useAppSelector } from "@shared/hooks";
+import { getProducts } from "@redux/productsReducer";
 import {
   selectFetchProductsStatus,
   selectFilteredIds,
-} from "@shared/selectors";
+} from "@entities/product/model/selectors";
+
+import { ProductsList } from "./ProductsList";
 import { Loader } from "@shared/ui/Loader/Loader";
+import { selectChosenProducts } from "@entities/cart/model/selectors";
 
-export const ProductPage = () => {
-  const navigate = useNavigate();
+export const ProductsPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
+  const status = useAppSelector(selectFetchProductsStatus);
+  const productIds = useAppSelector(selectFilteredIds);
   const chosenProducts = useAppSelector(selectChosenProducts);
-  const filteredIds = useAppSelector(selectFilteredIds);
-  const fetchProductStatus = useAppSelector(selectFetchProductsStatus);
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
-  const handleCardClick = (id: number) => {
+  const openProduct = (id: number) => {
     navigate(`/products/${id}`);
   };
 
-  if (fetchProductStatus == "pending") return <Loader />;
-
-  if (filteredIds.length === 0) {
-    return <div className={classes.container}>No products</div>;
-  }
+  if (status == "pending") return <Loader />;
 
   return (
-    <div className={classes.container}>
-      {filteredIds &&
-        filteredIds.map((id: number) => {
-          return (
-            <ProductCard
-              key={id}
-              id={id}
-              quantity={chosenProducts[id]}
-              handleCardClick={handleCardClick}
-            />
-          );
-        })}
-    </div>
+    <ProductsList
+      ids={productIds}
+      quantities={chosenProducts}
+      onOpenProduct={openProduct}
+    />
   );
 };

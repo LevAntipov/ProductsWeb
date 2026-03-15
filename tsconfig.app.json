@@ -28,6 +28,8 @@
     "paths": {
       "@assets/*": ["./assets/*"],
       "@pages/*": ["./pages/*"],
+      "@redux/*": ["./redux/*"],
+      "@entities/*": ["./entities/*"],
       "@shared/*": ["./shared/*"],
       "@features/*": ["./features/*"],
     },

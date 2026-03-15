@@ -1,21 +1,16 @@
 import cardInfoIconStar from "@assets/cardInfoIconStar.svg";
 import classes from "./ProductCard.module.css";
-import type { HandleCardClick, ProductId, ProductsQuantity } from "types";
 import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
 import { useAppSelector } from "@shared/hooks";
 import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
 
-export type ProductCardProps = {
-  id: ProductId;
-  quantity?: ProductsQuantity;
-  handleCardClick: HandleCardClick;
-};
+export interface ProductCardProps {
+  id: number;
+  quantity?: number;
+  onOpen: () => void;
+}
 
-export const ProductCard = ({
-  id,
-  quantity,
-  handleCardClick,
-}: ProductCardProps) => {
+export const ProductCard = ({ id, quantity, onOpen }: ProductCardProps) => {
   const { decrease, increase } = useChangeProductQuantity(id);
 
   const product = useAppSelector((state) => state.products.entities[id]);
@@ -25,11 +20,11 @@ export const ProductCard = ({
 
   return (
     <div className={classes.card}>
-      <div className={classes.image} onClick={() => handleCardClick(id)}>
+      <div className={classes.image} onClick={() => onOpen()}>
         <img src={image}></img>
       </div>
       <div className={classes.info}>
-        <div className={classes.title} onClick={() => handleCardClick(id)}>
+        <div className={classes.title} onClick={() => onOpen()}>
           <div className={classes.itemName}>
             <h3>{title}</h3>
           </div>
