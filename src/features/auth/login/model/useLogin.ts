@@ -1,4 +1,4 @@
-import { authClient } from "lib/auth-client";
+import { authClient } from "@shared/lib/auth-client";
 import { useState } from "react";
 
 export const useLogin = () => {

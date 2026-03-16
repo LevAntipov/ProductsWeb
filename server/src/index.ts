@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { toNodeHandler } from "better-auth/node";
+import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import { auth } from "./auth.js";
 
 const app = express();
@@ -14,13 +14,27 @@ app.use(
   }),
 );
 
-// Важно: auth handler до express.json()
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
+});
+
+app.get("/api/me", async (req, res) => {
+  const session = await auth.api.getSession({
+    headers: fromNodeHeaders(req.headers),
+  });
+
+  if (!session) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  return res.json({
+    user: session.user,
+    session: session.session,
+  });
 });
 
 app.listen(port, () => {
