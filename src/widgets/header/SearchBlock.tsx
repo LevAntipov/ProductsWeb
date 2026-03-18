@@ -1,4 +1,4 @@
-import type { FilterMethodType } from "@shared/types";
+import type { FilterMethodType } from "@entities/product/model/types";
 import { FilterMenu } from "./FilterMenu";
 import classes from "./Header.module.css";
 import { SearchInput } from "./SearchInput";
