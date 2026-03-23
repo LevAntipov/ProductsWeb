@@ -6,6 +6,7 @@ import { auth } from "./auth.js";
 import productRouter from "./routes/productsRouter.js";
 import healthRouter from "./routes/healthRouter.js";
 import cartRouter from "./routes/cartRouter.js";
+import { requireUser } from "./middleware/requireUser.js";
 
 const app = express();
 const port = Number(process.env.PORT) || 3005;
@@ -19,7 +20,7 @@ app.use(
 );
 
 app.use("/api", healthRouter);
-app.use("/api/cart", cartRouter);
+app.use("/api/cart", requireUser, cartRouter);
 app.use("/api/products", productRouter);
 
 app.all("/api/auth/*splat", toNodeHandler(auth));

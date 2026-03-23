@@ -4,7 +4,7 @@ import { Layout } from "@shared/ui/Layout/Layout";
 import { Header } from "@widgets/header/Header";
 import { Outlet } from "react-router";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type MeResponse = {
   user: {
@@ -75,9 +75,9 @@ export const RootLayout = () => {
   return (
     <Layout>
       <Header />
-      <CurrentUser />
+      {/* <CurrentUser />
       <h1>--------</h1>
-      <Me />
+      <Me /> */}
       <Outlet />
     </Layout>
   );
