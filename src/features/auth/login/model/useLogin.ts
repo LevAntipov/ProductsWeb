@@ -17,7 +17,6 @@ export const useLogin = () => {
           alert("logged in!");
         },
         onError: (ctx) => {
-          alert(ctx.error.message);
           setError(ctx.error.message);
         },
       },

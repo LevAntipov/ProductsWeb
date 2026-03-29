@@ -106,6 +106,7 @@ export const getCart = (req: Request, res: Response) => {
     },
     { price: 0, quantity: 0 },
   );
+  totals.price = +totals.price.toFixed(2);
 
   res.json({
     items,

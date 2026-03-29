@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import type { AppDispatch, RootState } from "app/store";
 
-export const useDebounce = (value: string, delay: number) => {
+export const useDebounce = (value: string | number, delay: number = 200) => {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {

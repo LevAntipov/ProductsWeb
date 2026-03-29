@@ -1,30 +1,17 @@
 import productsReducer from "@entities/product/model/slice";
 import cartReducer from "@entities/cart/model/slice";
 import { configureStore } from "@reduxjs/toolkit";
+import { api } from "@shared/api";
 
 export const store = configureStore({
   reducer: {
+    [api.reducerPath]: api.reducer,
     products: productsReducer,
     carts: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(cartMiddleware),
+    getDefaultMiddleware().concat(api.middleware),
 });
-//@ts-ignore
-function cartMiddleware(store) {
-  //@ts-ignore
-  return (next) => (action) => {
-    const result = next(action); // сначала обновляем store через reducer
-
-    // Теперь проверяем, относится ли action к корзине
-    if (action.type.startsWith("carts/")) {
-      const state = store.getState().carts;
-      localStorage.setItem("cart", JSON.stringify(state));
-    }
-
-    return result;
-  };
-}
 
 //@ts-ignore
 window.store = store;

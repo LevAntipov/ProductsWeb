@@ -1,31 +1,59 @@
-import { useAppSelector } from "@shared/lib/hooks";
 import classes from "./CartPage.module.css";
 import { PaymentBlock } from "./PaymentBlock";
 import { CartList } from "./CartList";
-import { selectChosenProducts } from "@entities/cart/model/selectors";
-import type { ProductId } from "@entities/product/model/types";
-import type { ProductsQuantity } from "@entities/cart/model/types";
+import { useGetCartQuery } from "@shared/api";
+import { Loader } from "@shared/ui/Loader/Loader";
+
+// export const CartPage = () => {
+//   const { data: cart, isLoading } = useGetCartQuery();
+
+//   return (
+//     <div className={classes.container}>
+//       <div>
+//         <h1>Shopping Cart</h1>
+//       </div>
+//       {isLoading ? (
+//         <Loader />
+//       ) : cart?.items.length === 0 ? (
+//         <div style={{ textAlign: "center" }}>No products</div>
+//       ) : (
+//         <div className={classes.cart}>
+//           <CartList productsList={cart?.items} />
+//           <PaymentBlock
+//             totalPrice={cart?.price}
+//             totalQuantity={cart?.quantity}
+//           />
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
 export const CartPage = () => {
-  const products = useAppSelector(selectChosenProducts);
-  const productsList = Object.entries(products).map(([id, qty]) => [
-    +id,
-    qty,
-  ]) as [ProductId, ProductsQuantity][];
+  const { data: cart, isLoading } = useGetCartQuery();
+
+  if (isLoading) {
+    return (
+      <div className={classes.container}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.container}>
       <div>
         <h1>Shopping Cart</h1>
       </div>
-      {productsList.length === 0 ? (
-        <div style={{ textAlign: "center" }}>No products</div>
-      ) : (
-        <div className={classes.cart}>
-          <CartList productsList={productsList} />
-          <PaymentBlock />
-        </div>
-      )}
+      <div className={classes.cart}>
+        <CartList productsList={cart?.items} />
+        {cart?.items.length > 0 && (
+          <PaymentBlock
+            totalPrice={cart?.price}
+            totalQuantity={cart?.quantity}
+          />
+        )}
+      </div>
     </div>
   );
 };

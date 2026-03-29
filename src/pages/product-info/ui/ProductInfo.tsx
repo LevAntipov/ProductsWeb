@@ -7,7 +7,7 @@ import backToIcon from "@assets/backToIcon.png";
 import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
 import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
 import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
-import { getProduct } from "@entities/product/model/slice";
+import { useAddCartItemMutation, useGetProductQuery } from "@shared/api";
 
 export const ProductInfo = () => {
   const navigate = useNavigate();
@@ -15,19 +15,20 @@ export const ProductInfo = () => {
 
   const [quantity, setQuantity] = useState(0);
   const { id = "" } = useParams<{ id: string }>();
-  const { increase } = useChangeProductQuantity(+id);
-  const product = useAppSelector((state) => state.products.entities?.[+id!]);
-  const status = useAppSelector((state) => state.products.fetchProductStatus);
+  // const { increase } = useChangeProductQuantity(+id);
+  // const product = useAppSelector((state) => state.products.entities?.[+id!]);
+  // const status = useAppSelector((state) => state.products.fetchProductStatus);
+
+  const { data: product } = useGetProductQuery(id);
+  const [addProduct, { isLoading }] = useAddCartItemMutation();
 
   useEffect(() => {
-    if (!product) {
-      dispatch(getProduct(+id));
-    }
+    window.scrollTo(0, 0);
   }, []);
 
-  const handleAddButtonClick = () => {
+  const handleAddButtonClick = async () => {
     if (quantity > 0) {
-      increase(quantity);
+      await addProduct({ productId: +id, quantity });
       setQuantity(0);
     }
   };

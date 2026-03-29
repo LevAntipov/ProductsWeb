@@ -1,39 +1,42 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
-import {
-  selectFetchProductsStatus,
-  selectFilteredIds,
-} from "@entities/product/model/selectors";
-
 import { ProductsList } from "./ProductsList";
 import { Loader } from "@shared/ui/Loader/Loader";
-import { selectChosenProducts } from "@entities/cart/model/selectors";
-import { getProducts } from "@entities/product/model/slice";
+import { useGetCartQuery, useGetProductsQuery } from "@shared/api";
+import { useSelector } from "react-redux";
+import { selectFilteredProducts } from "@entities/product/model/selectors";
+import type { ProductId } from "@entities/product/model/types";
 
 export const ProductsPage = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const status = useAppSelector(selectFetchProductsStatus);
-  const productIds = useAppSelector(selectFilteredIds);
-  const chosenProducts = useAppSelector(selectChosenProducts);
+  const { data: cart } = useGetCartQuery();
+  const chosenProducts = cart?.items.reduce(
+    (acc, item) => {
+      acc[item.productId] = item.quantity;
+      return acc;
+    },
+    {} as Record<ProductId, number>,
+  );
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  const { data: products, isLoading } = useGetProductsQuery();
+
+  const filteredProducts = useSelector(selectFilteredProducts);
 
   const openProduct = (id: number) => {
     navigate(`/products/${id}`);
   };
 
-  if (status == "pending") return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
-    <ProductsList
-      ids={productIds}
-      quantities={chosenProducts}
-      onOpenProduct={openProduct}
-    />
+    <>
+      {products && (
+        <ProductsList
+          products={filteredProducts}
+          quantities={chosenProducts}
+          onOpenProduct={openProduct}
+        />
+      )}
+    </>
   );
 };

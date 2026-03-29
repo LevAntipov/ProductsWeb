@@ -1,3 +1,8 @@
+.emptyCart{
+    text-align: center;
+    margin: 0 auto;
+}
+
 .cart{
     display: flex;
     justify-content: space-between;

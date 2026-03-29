@@ -3,12 +3,15 @@ import { SearchBlock } from "./SearchBlock";
 
 import classes from "./Header.module.css";
 import shoppingCart from "@assets/shoppingCartIcon.png";
-import { useAppSelector } from "@shared/lib/hooks";
-import { selectProductsAmount } from "@entities/cart/model/selectors";
+import { useGetCartQuery } from "@shared/api";
 
 export const Header = () => {
   const location = useLocation();
-  const productsAmount = useAppSelector(selectProductsAmount);
+  const { data } = useGetCartQuery();
+  let productsAmount = 0;
+  if (data) {
+    productsAmount = data?.quantity;
+  }
 
   const isProductsPage = location.pathname === "/products";
   const isCartPage = location.pathname === "/cart";

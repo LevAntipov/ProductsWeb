@@ -1,50 +1,44 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { productsApi } from "@shared/api";
 import type { RootState } from "app/store";
 
-export const selectProductsState = (state: RootState) => state.products;
-export const selectEntities = (state: RootState) => state.products.entities;
-export const selectIds = (state: RootState) => state.products.ids;
-export const selectFilterStr = (state: RootState) => state.products.filter.str;
+export const selectFilterStr = (state: RootState) =>
+  state.products.filterSearch;
 export const selectFilterMethod = (state: RootState) =>
-  state.products.filter.method;
-export const selectFetchProductsStatus = (state: RootState) =>
-  state.products.fetchProductsStatus;
-export const selectFilteredIds = createSelector(
-  [selectIds, selectEntities, selectFilterStr, selectFilterMethod],
-  (ids, entities, str, method) => {
-    let filteredids;
+  state.products.filterMethod;
+export const selectProducts = (state: RootState) =>
+  productsApi.endpoints.getProducts.select()(state)?.data;
+
+export const selectFilteredProducts = createSelector(
+  [selectProducts, selectFilterStr, selectFilterMethod],
+  (products, str, method) => {
+    if (!products) return [];
+
+    let filtered;
     if (str === null || str === "") {
-      filteredids = ids;
+      filtered = products;
     } else {
       const lower = str.toLowerCase();
-      filteredids = ids.filter((id) =>
-        entities[id].title.toLowerCase().includes(lower),
+      filtered = products.filter((item) =>
+        item.title.toLowerCase().includes(lower),
       );
     }
 
     if (method === "no filter") {
-      return filteredids;
+      return filtered;
     }
     if (method === "high to low") {
-      return [...filteredids].sort(
-        (a, b) => entities[b].price - entities[a].price,
-      );
+      return [...filtered].sort((a, b) => b.price - a.price);
     }
     if (method === "low to high") {
-      return [...filteredids].sort(
-        (a, b) => entities[a].price - entities[b].price,
-      );
+      return [...filtered].sort((a, b) => a.price - b.price);
     }
     if (method === "popularity filter") {
-      return [...filteredids].sort(
-        (a, b) => entities[b].rating.count - entities[a].rating.count,
-      );
+      return [...filtered].sort((a, b) => b.rating.count - a.rating.count);
     }
     if (method === "raiting filter") {
-      return [...filteredids].sort(
-        (a, b) => entities[b].rating.rate - entities[a].rating.rate,
-      );
+      return [...filtered].sort((a, b) => b.rating.rate - a.rating.rate);
     }
-    return ids;
+    return products;
   },
 );

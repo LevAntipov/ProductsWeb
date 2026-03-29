@@ -1,20 +1,31 @@
 import type { ProductId } from "@entities/product/model/types";
-import { useAppDispatch } from "../../../../shared/lib/hooks";
-import { decreaseQuantity, increaseQuantity } from "@entities/cart/model/slice";
+import { useUpdateCartItemMutation } from "@shared/api";
+import { useDebounce } from "@shared/lib/hooks";
+import { useEffect, useState } from "react";
 
-export const useChangeProductQuantity = (id: ProductId) => {
-  const dispatch = useAppDispatch();
+export const useChangeProductQuantity = (
+  id: ProductId,
+  initialQuantity: number = 0,
+) => {
+  const [updateProductQuantity] = useUpdateCartItemMutation();
 
-  const decrease = (quantity: number = 1) => {
-    dispatch(decreaseQuantity({ id, quantity }));
-  };
+  const [quantity, setQuantity] = useState(initialQuantity ?? 0);
 
-  const increase = (quantity: number = 1) => {
-    dispatch(increaseQuantity({ id, quantity }));
-  };
+  const debounced = useDebounce(quantity, 200);
+
+  useEffect(() => {
+    if (initialQuantity === debounced) return;
+    if (initialQuantity === undefined) return;
+
+    updateProductQuantity({ itemId: id, quantity: +debounced });
+  }, [debounced, updateProductQuantity, id]);
+
+  useEffect(() => {
+    setQuantity(initialQuantity);
+  }, [initialQuantity]);
 
   return {
-    decrease,
-    increase,
+    quantity,
+    setQuantity,
   };
 };

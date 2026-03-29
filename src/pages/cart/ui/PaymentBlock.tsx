@@ -1,14 +1,14 @@
-import { useAppSelector } from "@shared/lib/hooks";
 import classes from "./PaymentBlock.module.css";
-import {
-  selectProductsAmount,
-  selectTotalCartPrice,
-} from "@entities/cart/model/selectors";
 
-export const PaymentBlock = () => {
-  const totalPrice = useAppSelector(selectTotalCartPrice);
-  const productsAmount = useAppSelector(selectProductsAmount);
+interface PaymentBlockProps {
+  totalPrice: number;
+  totalQuantity: number;
+}
 
+export const PaymentBlock = ({
+  totalPrice,
+  totalQuantity,
+}: PaymentBlockProps) => {
   const freeDeliveryPrice = 500;
   let deliveryPrice = 10;
   const delta = +(freeDeliveryPrice - +totalPrice).toFixed(2);
@@ -20,7 +20,7 @@ export const PaymentBlock = () => {
         <tbody>
           <tr>
             <td>Order summary</td>
-            <td>{productsAmount} item(s)</td>
+            <td>{totalQuantity} item(s)</td>
           </tr>
           <tr>
             <td>Delivery</td>

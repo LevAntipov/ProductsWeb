@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import showMoreIcon from "@assets/showMoreIcon.png";
 import selectedIcon from "@assets/selectedIcon.png";
 import classes from "./Header.module.css";
-import { useAppDispatch } from "@shared/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
 import type { FilterMethodType } from "@entities/product/model/types";
-import { setFilter } from "@entities/product/model/slice";
+import { setFilter, setFilterMethod } from "@entities/product/model/slice";
+import { selectFilterMethod } from "@entities/product/model/selectors";
 
 interface FilterMenuProps {
   options: string[];
@@ -36,7 +37,7 @@ export const FilterMenu = ({ options }: FilterMenuProps) => {
 
   const handleFilterMenuClick = (filter: FilterMethodType) => {
     setChosenFilter(filter);
-    dispatch(setFilter({ method: filter }));
+    dispatch(setFilterMethod(chosenFilter));
     setFilterMenuFlag(false);
   };
 

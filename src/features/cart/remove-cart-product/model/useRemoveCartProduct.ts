@@ -1,15 +1,18 @@
-import { deleteChosenProduct } from "@entities/cart/model/slice";
 import type { ProductId } from "@entities/product/model/types";
-import { useAppDispatch } from "@shared/lib/hooks";
+import { useDeleteCartItemMutation } from "@shared/api";
 
 export const useRemoveCartProduct = (id: ProductId) => {
-  const dispatch = useAppDispatch();
+  const [removeProduct, { isLoading }] = useDeleteCartItemMutation();
 
-  const removeProduct = () => {
-    dispatch(deleteChosenProduct(id));
-  };
+  // const dispatch = useAppDispatch();
+
+  // const removeProduct = () => {
+  //   dispatch(deleteProductFromCart(id));
+  //   dispatch(deleteChosenProduct(id));
+  // };
 
   return {
-    removeProduct,
+    removeProduct: () => removeProduct(id),
+    isLoading,
   };
 };
