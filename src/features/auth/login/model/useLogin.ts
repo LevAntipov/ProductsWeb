@@ -1,9 +1,10 @@
-import { authClient } from "@shared/lib/auth-client";
-import { useState } from "react";
+import { useState } from 'react';
+
+import { authClient } from '@shared/lib/auth-client';
 
 export const useLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async () => {
@@ -14,12 +15,12 @@ export const useLogin = () => {
       },
       {
         onSuccess: () => {
-          alert("logged in!");
+          alert('logged in!');
         },
         onError: (ctx) => {
           setError(ctx.error.message);
         },
-      },
+      }
     );
 
     if (error) {
@@ -27,7 +28,7 @@ export const useLogin = () => {
       return;
     }
 
-    console.log("LOGIN DATA:", data);
+    console.log('LOGIN DATA:', data);
   };
 
   return {

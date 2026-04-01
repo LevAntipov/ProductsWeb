@@ -1,8 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import type { AppDispatch, RootState } from "app/store";
+import { useEffect, useState } from 'react';
 
-export const useDebounce = (value: string | number, delay: number = 200) => {
+import { useDispatch, useSelector } from 'react-redux';
+
+import type { AppDispatch, RootState } from 'app/store';
+
+export const useDebounce = <T extends number | string>(value: T, delay: number = 200): T => {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {

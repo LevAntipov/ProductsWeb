@@ -1,6 +1,7 @@
-import type { ProductsQuantity } from "@entities/cart/model/types";
-import type { ProductId, ProductType } from "@entities/product/model/types";
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
+import type { ProductsQuantity } from '@entities/cart/model/types';
+import type { ProductId, ProductType } from '@entities/product/model/types';
 
 type initialStateType = {
   chosenProducts: Record<ProductId, ProductsQuantity>;
@@ -18,7 +19,7 @@ const initialState: initialStateType = {
 };
 
 const cartsReducer = createSlice({
-  name: "carts",
+  name: 'carts',
   initialState,
   reducers: {
     // checkChosenProducts: (state) => {

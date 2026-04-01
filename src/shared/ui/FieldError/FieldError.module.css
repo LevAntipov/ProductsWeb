@@ -1,10 +1,10 @@
-.error{
+.error {
   position: relative;
   color: rgb(171, 49, 49);
   padding-left: 20px;
 }
 
-.error::before{
+.error::before {
   content: '⚠';
   position: absolute;
   transform: translateX(-20px);

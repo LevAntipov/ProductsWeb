@@ -1,5 +1,6 @@
-import type { ReactElement } from "react";
-import classes from "./Layout.module.css";
+import type { ReactElement } from 'react';
+
+import classes from './Layout.module.css';
 
 interface LayoutProps {
   children: ReactElement[];

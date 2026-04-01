@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router";
-import { ProductsList } from "./ProductsList";
-import { Loader } from "@shared/ui/Loader/Loader";
-import { useGetCartQuery, useGetProductsQuery } from "@shared/api";
-import { useSelector } from "react-redux";
-import { selectFilteredProducts } from "@entities/product/model/selectors";
-import type { ProductId } from "@entities/product/model/types";
+import { useNavigate } from 'react-router';
+
+import { useSelector } from 'react-redux';
+
+import { selectFilteredProducts } from '@entities/product/model/selectors';
+import type { ProductId } from '@entities/product/model/types';
+
+import { useGetCartQuery, useGetProductsQuery } from '@shared/api';
+import { Loader } from '@shared/ui/Loader/Loader';
+
+import { ProductsList } from './ProductsList';
 
 export const ProductsPage = () => {
   const navigate = useNavigate();
@@ -15,7 +19,7 @@ export const ProductsPage = () => {
       acc[item.productId] = item.quantity;
       return acc;
     },
-    {} as Record<ProductId, number>,
+    {} as Record<ProductId, number>
   );
 
   const { data: products, isLoading } = useGetProductsQuery();

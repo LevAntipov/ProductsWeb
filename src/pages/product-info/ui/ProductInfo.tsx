@@ -1,20 +1,24 @@
-import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import classes from "./ProductInfo.module.css";
+import { useEffect, useState } from 'react';
 
-import cardInfoIconStar from "@assets/cardInfoIconStar.svg";
-import backToIcon from "@assets/backToIcon.png";
-import { QuantityControl } from "@shared/ui/quantity-control/QuantityControl";
-import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
-import { useChangeProductQuantity } from "@features/product/change-product-quantity/model/useChangeProductQuantity";
-import { useAddCartItemMutation, useGetProductQuery } from "@shared/api";
+import { useNavigate, useParams } from 'react-router';
+
+import { useChangeProductQuantity } from '@features/product/change-product-quantity/model/useChangeProductQuantity';
+
+import { useAddCartItemMutation, useGetProductQuery } from '@shared/api';
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
+import { QuantityControl } from '@shared/ui/quantity-control/QuantityControl';
+
+import backToIcon from '@assets/backToIcon.png';
+import cardInfoIconStar from '@assets/cardInfoIconStar.svg';
+
+import classes from './ProductInfo.module.css';
 
 export const ProductInfo = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [quantity, setQuantity] = useState(0);
-  const { id = "" } = useParams<{ id: string }>();
+  const { id = '' } = useParams<{ id: string }>();
   // const { increase } = useChangeProductQuantity(+id);
   // const product = useAppSelector((state) => state.products.entities?.[+id!]);
   // const status = useAppSelector((state) => state.products.fetchProductStatus);
@@ -37,12 +41,7 @@ export const ProductInfo = () => {
     <>
       <div className={classes.backToTap} onClick={() => navigate(-1)}>
         <h4>Go back</h4>
-        <img
-          className={classes.backToIcon}
-          src={backToIcon}
-          width="20px"
-          height="8px"
-        ></img>
+        <img className={classes.backToIcon} src={backToIcon} width="20px" height="8px"></img>
       </div>
       {product ? (
         <div className={classes.product}>
@@ -86,16 +85,13 @@ export const ProductInfo = () => {
                   onDecrement={() => quantity >= 1 && setQuantity((p) => p - 1)}
                 />
               </div>
-              <button
-                className={classes.addButton}
-                onClick={handleAddButtonClick}
-              >
+              <button className={classes.addButton} onClick={handleAddButtonClick}>
                 Add to cart
               </button>
             </div>
           </div>
         </div>
-      ) : status === "pending" ? (
+      ) : status === 'pending' ? (
         <div>Loading</div>
       ) : (
         <div>Something wrong</div>

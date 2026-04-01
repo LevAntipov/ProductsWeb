@@ -1,21 +1,22 @@
-import { authClient } from "@shared/lib/auth-client";
-import { useState } from "react";
+import { useState } from 'react';
+
+import { authClient } from '@shared/lib/auth-client';
 
 export const useRegister = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
-      return setError("Passwords are not equal");
+      return setError('Passwords are not equal');
     }
 
     const { data, error } = await authClient.signUp.email({
       email,
       password,
-      name: "User",
+      name: 'User',
     });
 
     if (error) {
@@ -23,8 +24,8 @@ export const useRegister = () => {
       return;
     }
 
-    console.log("USER:", data);
-    alert("registered!");
+    console.log('USER:', data);
+    alert('registered!');
   };
 
   return {

@@ -1,15 +1,18 @@
-import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router";
-import { router } from "./app/router.tsx";
-import "./normalize.css";
-import { Provider } from "react-redux";
-import { AppInitializer } from "app/providers/AppInitializer.tsx";
-import { store } from "app/store.ts";
+import { RouterProvider } from 'react-router';
 
-createRoot(document.getElementById("root")!).render(
+import { Provider } from 'react-redux';
+
+import { AppInitializer } from 'app/providers/AppInitializer.tsx';
+import { store } from 'app/store.ts';
+import { createRoot } from 'react-dom/client';
+
+import { router } from './app/router.tsx';
+import './normalize.css';
+
+createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <AppInitializer>
       <RouterProvider router={router} />
     </AppInitializer>
-  </Provider>,
+  </Provider>
 );

@@ -1,36 +1,36 @@
-.emptyCart{
-    text-align: center;
-    margin: 0 auto;
+.emptyCart {
+  text-align: center;
+  margin: 0 auto;
 }
 
-.cart{
-    display: flex;
-    justify-content: space-between;
-    gap:15px;
+.cart {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
-.cartItems{
-    display: flex;
-    flex-direction: column;
-    flex:1;
-    row-gap: 15px;
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  row-gap: 15px;
 }
 
 .cart > :last-child {
-    width: 30%; /* PaymentBlock получит 300px */
-    flex-shrink: 0;
-    height: 30%;
+  width: 30%; /* PaymentBlock получит 300px */
+  flex-shrink: 0;
+  height: 30%;
 }
 
-@media(max-width:700px) {
-    .cart{
-        flex-direction: column;
-    }
-    .cart > :last-child {
+@media (max-width: 700px) {
+  .cart {
+    flex-direction: column;
+  }
+  .cart > :last-child {
     width: 100%; /* PaymentBlock получит 300px */
     flex-shrink: 0;
-}
-    .cartItems{
-        width: 100%;
-    }
+  }
+  .cartItems {
+    width: 100%;
+  }
 }

@@ -28,18 +28,7 @@ body,
   Убираем внешние отступы вертикали нужным тегам,
   у которых есть атрибут class
  */
-:where(
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  dl
-):where([class]) {
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
 
@@ -82,7 +71,6 @@ p {
 p:where(:not([class]):not(:last-child)) {
   margin-bottom: var(--paragraphMarginBottom);
 }
-
 
 /**
   Упрощаем работу с изображениями и видео
@@ -160,10 +148,7 @@ button {
   (за исключением тех, у которых уже указан
   атрибут fill со значением 'none' или начинается с 'url')
  */
-:where([fill]:not(
-  [fill="none"],
-  [fill^="url"]
-)) {
+:where([fill]:not([fill='none'], [fill^='url'])) {
   fill: currentColor;
 }
 
@@ -172,10 +157,7 @@ button {
   (за исключением тех, у которых уже указан
   атрибут stroke со значением 'none')
  */
-:where([stroke]:not(
-  [stroke="none"],
-  [stroke^="url"]
-)) {
+:where([stroke]:not([stroke='none'], [stroke^='url'])) {
   stroke: currentColor;
 }
 
@@ -210,21 +192,19 @@ svg * {
 }
 
 :root {
-  --color-bg: #0E0E11;
-  --color-card: #1A1B22;
-  --color-surface: #2C2E3A;
+  --color-bg: #0e0e11;
+  --color-card: #1a1b22;
+  --color-surface: #2c2e3a;
 
-  --color-text: #E6E6E9;
-  --color-text-secondary: #9C9CA6;
-  --color-accent: #4ADE80;
+  --color-text: #e6e6e9;
+  --color-text-secondary: #9c9ca6;
+  --color-accent: #4ade80;
 }
-
-
 
 html,
 body,
 #root {
   margin: 0;
   min-height: 100%;
-  background-color: #1E1F26;
+  background-color: #1e1f26;
 }

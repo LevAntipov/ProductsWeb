@@ -1,8 +1,9 @@
-import type { ProductId } from "@entities/product/model/types";
-import { useDeleteCartItemMutation } from "@shared/api";
+import type { ProductId } from '@entities/product/model/types';
+
+import { useDeleteCartItemMutation } from '@shared/api';
 
 export const useRemoveCartProduct = (id: ProductId) => {
-  const [removeProduct, { isLoading }] = useDeleteCartItemMutation();
+  const [removeProduct, { isLoading, isSuccess, isError }] = useDeleteCartItemMutation();
 
   // const dispatch = useAppDispatch();
 
@@ -14,5 +15,7 @@ export const useRemoveCartProduct = (id: ProductId) => {
   return {
     removeProduct: () => removeProduct(id),
     isLoading,
+    isSuccess,
+    isError,
   };
 };

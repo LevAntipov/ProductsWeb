@@ -1,1 +1,1 @@
-export type StatusType = "fulfilled" | "pending" | "rejected" | "idle";
+export type StatusType = 'fulfilled' | 'pending' | 'rejected' | 'idle';

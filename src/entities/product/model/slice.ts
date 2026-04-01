@@ -1,5 +1,6 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { FilterMethodType } from "./types";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
+import type { FilterMethodType } from './types';
 
 type initialStateType = {
   filter: { str: string | null; method: FilterMethodType };
@@ -8,27 +9,24 @@ type initialStateType = {
 };
 
 const initialState: initialStateType = {
-  filter: { str: "", method: "no filter" },
+  filter: { str: '', method: 'no filter' },
 
-  filterSearch: "",
-  filterMethod: "no filter",
+  filterSearch: '',
+  filterMethod: 'no filter',
 };
 
 export const productsReducer = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {
-    setFilter: (
-      state,
-      action: PayloadAction<{ str?: string; method?: FilterMethodType }>,
-    ) => {
+    setFilter: (state, action: PayloadAction<{ str?: string; method?: FilterMethodType }>) => {
       state.filter = {
         ...state.filter,
         ...action.payload,
       };
     },
 
-    setFilterSeacrh: (state, action: PayloadAction<string>) => {
+    setFilterSearch: (state, action: PayloadAction<string>) => {
       state.filterSearch = action.payload;
     },
     setFilterMethod: (state, action: PayloadAction<FilterMethodType>) => {
@@ -39,5 +37,5 @@ export const productsReducer = createSlice({
 
 const { actions, reducer } = productsReducer;
 
-export const { setFilter, setFilterMethod, setFilterSeacrh } = actions;
+export const { setFilter, setFilterMethod, setFilterSearch } = actions;
 export default reducer;

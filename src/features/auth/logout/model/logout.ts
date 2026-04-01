@@ -1,4 +1,4 @@
-import { authClient } from "@shared/lib/auth-client";
+import { authClient } from '@shared/lib/auth-client';
 
 export const useLogout = () => {
   const handleLogout = async () => {
@@ -9,7 +9,7 @@ export const useLogout = () => {
       return;
     }
 
-    alert("logged out");
+    alert('logged out');
   };
 
   return {

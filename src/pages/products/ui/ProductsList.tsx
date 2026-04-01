@@ -1,6 +1,7 @@
-import type { ProductType } from "@entities/product/model/types";
-import classes from "./ProductsPage.module.css";
-import { ProductCard } from "@entities/product/ui/ProductCard/ProductCard";
+import type { ProductType } from '@entities/product/model/types';
+import { ProductCard } from '@entities/product/ui/ProductCard/ProductCard';
+
+import classes from './ProductsPage.module.css';
 
 type Props = {
   products: ProductType[];
@@ -8,11 +9,7 @@ type Props = {
   onOpenProduct: (id: number) => void;
 };
 
-export const ProductsList = ({
-  products,
-  quantities,
-  onOpenProduct,
-}: Props) => {
+export const ProductsList = ({ products, quantities, onOpenProduct }: Props) => {
   return (
     <div className={classes.container}>
       {products?.length ? (

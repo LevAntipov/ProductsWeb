@@ -1,14 +1,11 @@
-import classes from "./PaymentBlock.module.css";
+import classes from './PaymentBlock.module.css';
 
 interface PaymentBlockProps {
   totalPrice: number;
   totalQuantity: number;
 }
 
-export const PaymentBlock = ({
-  totalPrice,
-  totalQuantity,
-}: PaymentBlockProps) => {
+export const PaymentBlock = ({ totalPrice, totalQuantity }: PaymentBlockProps) => {
   const freeDeliveryPrice = 500;
   let deliveryPrice = 10;
   const delta = +(freeDeliveryPrice - +totalPrice).toFixed(2);

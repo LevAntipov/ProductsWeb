@@ -1,12 +1,11 @@
-import type { ProductId } from "@entities/product/model/types";
-import { useUpdateCartItemMutation } from "@shared/api";
-import { useDebounce } from "@shared/lib/hooks";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-export const useChangeProductQuantity = (
-  id: ProductId,
-  initialQuantity: number = 0,
-) => {
+import type { ProductId } from '@entities/product/model/types';
+
+import { useUpdateCartItemMutation } from '@shared/api';
+import { useDebounce } from '@shared/lib/hooks';
+
+export const useChangeProductQuantity = (id: ProductId, initialQuantity: number = 0) => {
   const [updateProductQuantity] = useUpdateCartItemMutation();
 
   const [quantity, setQuantity] = useState(initialQuantity ?? 0);

@@ -1,61 +1,73 @@
-.container{
-    display: flex;
-    column-gap: 20px;
-    padding: 40px 20px;
-    background-color: rgba(68, 63, 84, 0.421);
-    border-radius: 10px;
-    height: 220px;
+.container {
+  display: flex;
+  column-gap: 20px;
+  padding: 40px 20px;
+  background-color: rgba(68, 63, 84, 0.421);
+  border-radius: 10px;
+  height: 220px;
 }
 
-.image{
-    display: flex;
-    max-width: 120px;
-    padding: 20px;
-    background-color: #1A1B22;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
+.image {
+  display: flex;
+  max-width: 120px;
+  padding: 20px;
+  background-color: #1a1b22;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
 }
-.image img{
-    width: 70%;
-}
-
-.infoBlock{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.title{
-    font-weight: 500;
-    font-size: 16px;
+.image img {
+  width: 70%;
 }
 
-.priceBlock{
-    flex-direction: column;
-    row-gap: 10px;
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  font-weight: 500;
+  font-size: 16px;
 }
 
-.totalPurchase{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: auto;
-    width: 65px;
-}
-.totalPurchase span{
-    font-weight: 800;
-    font-size: 16px;
+.priceBlock {
+  flex-direction: column;
+  row-gap: 10px;
 }
 
-.trashBin{
-    width: 40px;
-    padding: 5px;
-    background-color: #E26D6D;
-    border-radius: 5px;
-    border: none;
-    transition: background-color 0.2s ease;
+.totalPurchase {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+  width: 65px;
 }
-.trashBin:hover{
-    background-color: #cc5555;
+.totalPurchase span {
+  font-weight: 800;
+  font-size: 16px;
 }
 
+.trashBin {
+  width: 40px;
+  padding: 5px;
+  background-color: #e26d6d;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+.trashBin:hover {
+  background-color: #cc5555;
+}
+.trashBin:disabled {
+  background-color: #58605f;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

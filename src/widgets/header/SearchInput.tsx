@@ -1,16 +1,21 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useDebounce } from "@shared/lib/hooks";
-import { Input } from "@shared/ui/Input/Input";
-import { setFilter } from "@entities/product/model/slice";
+import { useEffect, useState } from 'react';
+
+import { selectFilterStr } from '@entities/product/model/selectors';
+import { setFilterSearch } from '@entities/product/model/slice';
+
+import { useAppDispatch, useAppSelector, useDebounce } from '@shared/lib/hooks';
+import { Input } from '@shared/ui/Input/Input';
 
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
-  const [searchValue, setSearchValue] = useState("");
+  const filterStr = useAppSelector(selectFilterStr);
+
+  const [searchValue, setSearchValue] = useState<string>(filterStr);
 
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
   useEffect(() => {
-    dispatch(setFilter({ str: debouncedSearchValue }));
+    dispatch(setFilterSearch(debouncedSearchValue));
   }, [debouncedSearchValue, dispatch]);
 
   return (

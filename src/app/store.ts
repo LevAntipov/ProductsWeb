@@ -1,7 +1,9 @@
-import productsReducer from "@entities/product/model/slice";
-import cartReducer from "@entities/cart/model/slice";
-import { configureStore } from "@reduxjs/toolkit";
-import { api } from "@shared/api";
+import { configureStore } from '@reduxjs/toolkit';
+
+import cartReducer from '@entities/cart/model/slice';
+import productsReducer from '@entities/product/model/slice';
+
+import { api } from '@shared/api';
 
 export const store = configureStore({
   reducer: {
@@ -9,8 +11,7 @@ export const store = configureStore({
     products: productsReducer,
     carts: cartReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
 
 //@ts-ignore

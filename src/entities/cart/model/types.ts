@@ -1,4 +1,4 @@
-import type { ProductId } from "@entities/product/model/types";
+import type { ProductId } from '@entities/product/model/types';
 
 export interface CartItem {
   id: number;

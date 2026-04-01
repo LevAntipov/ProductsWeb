@@ -1,12 +1,12 @@
-.root{
-     background-color: #1E1F26;
-     color: #E6E6E9;
+.root {
+  background-color: #1e1f26;
+  color: #e6e6e9;
 }
-.body{
-    max-width: 1200px;
-    min-height: 100vh;
-    margin: 0 auto;
-    font-family: "Roboto", sans-serif;
-    margin-top: 60px;
-    padding: 20px;
+.body {
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 60px;
+  padding: 20px;
 }

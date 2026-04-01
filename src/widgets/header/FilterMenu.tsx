@@ -1,11 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import showMoreIcon from "@assets/showMoreIcon.png";
-import selectedIcon from "@assets/selectedIcon.png";
-import classes from "./Header.module.css";
-import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
-import type { FilterMethodType } from "@entities/product/model/types";
-import { setFilter, setFilterMethod } from "@entities/product/model/slice";
-import { selectFilterMethod } from "@entities/product/model/selectors";
+import { useEffect, useRef, useState } from 'react';
+
+import { selectFilterMethod } from '@entities/product/model/selectors';
+import { setFilterMethod } from '@entities/product/model/slice';
+import type { FilterMethodType } from '@entities/product/model/types';
+
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
+
+import selectedIcon from '@assets/selectedIcon.png';
+import showMoreIcon from '@assets/showMoreIcon.png';
+
+import classes from './Header.module.css';
 
 interface FilterMenuProps {
   options: string[];
@@ -14,8 +18,7 @@ interface FilterMenuProps {
 export const FilterMenu = ({ options }: FilterMenuProps) => {
   const dispatch = useAppDispatch();
   const [filterMenuFlag, setFilterMenuFlag] = useState(false);
-  const [chosenFilter, setChosenFilter] =
-    useState<FilterMethodType>("no filter");
+  const chosenFilter = useAppSelector(selectFilterMethod);
 
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,40 +31,32 @@ export const FilterMenu = ({ options }: FilterMenuProps) => {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
   const handleFilterMenuClick = (filter: FilterMethodType) => {
-    setChosenFilter(filter);
-    dispatch(setFilterMethod(chosenFilter));
+    dispatch(setFilterMethod(filter));
     setFilterMenuFlag(false);
   };
 
   return (
     <div className={classes.filterMenuWrapper} ref={menuRef}>
-      <div
-        className={classes.filterButton}
-        onClick={() => setFilterMenuFlag((prev) => !prev)}
-      >
+      <div className={classes.filterButton} onClick={() => setFilterMenuFlag((prev) => !prev)}>
         <span className={classes.filter}>
           {chosenFilter}
           <img
-            className={
-              filterMenuFlag ? classes.showMoreIconDown : classes.showMoreIconUp
-            }
+            className={filterMenuFlag ? classes.showMoreIconDown : classes.showMoreIconUp}
             src={showMoreIcon}
             alt="Toggle filter menu"
           />
         </span>
       </div>
 
-      <div
-        className={filterMenuFlag ? classes.filterMethods : classes.nonSelected}
-      >
+      <div className={filterMenuFlag ? classes.filterMethods : classes.nonSelected}>
         {options.map((item) => (
           <div
             key={item}

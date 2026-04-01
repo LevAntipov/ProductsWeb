@@ -1,10 +1,13 @@
-import { useLogout } from "@features/auth/logout/model/logout";
-import { authClient } from "@shared/lib/auth-client";
-import { Layout } from "@shared/ui/Layout/Layout";
-import { Header } from "@widgets/header/Header";
-import { Outlet } from "react-router";
+import { useEffect, useState } from 'react';
 
-import { useEffect, useState } from "react";
+import { Outlet } from 'react-router';
+
+import { useLogout } from '@features/auth/logout/model/logout';
+
+import { authClient } from '@shared/lib/auth-client';
+import { Layout } from '@shared/ui/Layout/Layout';
+
+import { Header } from '@widgets/header/Header';
 
 type MeResponse = {
   user: {
@@ -43,13 +46,13 @@ export const Me = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3005/api/me", {
-        credentials: "include",
+      const res = await fetch('http://localhost:3005/api/me', {
+        credentials: 'include',
       });
 
       if (!res.ok) {
         setData(null);
-        alert("Not authorized");
+        alert('Not authorized');
         return;
       }
 
@@ -63,7 +66,7 @@ export const Me = () => {
   return (
     <div>
       <button onClick={loadMe} disabled={loading}>
-        {loading ? "Loading..." : "Load /api/me"}
+        {loading ? 'Loading...' : 'Load /api/me'}
       </button>
 
       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}

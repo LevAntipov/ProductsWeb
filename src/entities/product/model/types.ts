@@ -14,8 +14,8 @@ export type ProductType = {
 };
 
 export type FilterMethodType =
-  | "no filter"
-  | "low to high"
-  | "high to low"
-  | "raiting filter"
-  | "popularity filter";
+  | 'no filter'
+  | 'low to high'
+  | 'high to low'
+  | 'raiting filter'
+  | 'popularity filter';

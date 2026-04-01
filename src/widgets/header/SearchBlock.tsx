@@ -1,14 +1,15 @@
-import type { FilterMethodType } from "@entities/product/model/types";
-import { FilterMenu } from "./FilterMenu";
-import classes from "./Header.module.css";
-import { SearchInput } from "./SearchInput";
+import type { FilterMethodType } from '@entities/product/model/types';
+
+import { FilterMenu } from './FilterMenu';
+import classes from './Header.module.css';
+import { SearchInput } from './SearchInput';
 
 const FILTER_OPTIONS: FilterMethodType[] = [
-  "no filter",
-  "low to high",
-  "high to low",
-  "popularity filter",
-  "raiting filter",
+  'no filter',
+  'low to high',
+  'high to low',
+  'popularity filter',
+  'raiting filter',
 ];
 
 export const SearchBlock = () => {

@@ -1,13 +1,15 @@
-import { CartPage } from "@pages/cart/ui/CartPage";
-import { ProductInfo } from "@pages/product-info/ui/ProductInfo";
-import { ProductsPage } from "@pages/products/ui/ProductPage";
-import { LoginPage, RegisterPage } from "@pages/sign-in";
-import { createHashRouter, Navigate } from "react-router";
-import { RootLayout } from "./layouts/RootLayout";
+import { createHashRouter, Navigate } from 'react-router';
+
+import { CartPage } from '@pages/cart/ui/CartPage';
+import { ProductInfo } from '@pages/product-info/ui/ProductInfo';
+import { ProductsPage } from '@pages/products/ui/ProductPage';
+import { LoginPage, RegisterPage } from '@pages/sign-in';
+
+import { RootLayout } from './layouts/RootLayout';
 
 export const router = createHashRouter([
   {
-    path: "/",
+    path: '/',
     Component: RootLayout,
     children: [
       {
@@ -15,22 +17,22 @@ export const router = createHashRouter([
         element: <Navigate to="products" replace />,
       },
       {
-        path: "products",
+        path: 'products',
         Component: ProductsPage,
       },
       {
-        path: "products/:id",
+        path: 'products/:id',
         Component: ProductInfo,
       },
       {
-        path: "cart",
+        path: 'cart',
         Component: CartPage,
       },
       {
-        path: "auth",
+        path: 'auth',
         children: [
           { index: true, Component: LoginPage },
-          { path: "register", Component: RegisterPage },
+          { path: 'register', Component: RegisterPage },
         ],
       },
     ],
