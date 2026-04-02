@@ -2,10 +2,10 @@ import React from 'react';
 
 import type { ProductType } from '@entities/product/model/types';
 
-import { useChangeProductQuantity } from '@features/product/change-product-quantity/model/useChangeProductQuantity';
+import { ChangeProductQuantityControl } from '@features/product/change-product-quantity/ui/ChangeProductQuantityControl';
 
 import { useAddCartItemMutation } from '@shared/api';
-import { QuantityControl } from '@shared/ui/quantity-control/QuantityControl';
+import { AddButton } from '@shared/ui/add-button/AddButton';
 
 import cardInfoIconStar from '@assets/cardInfoIconStar.svg';
 
@@ -19,9 +19,7 @@ export interface ProductCardProps {
 }
 
 export const ProductCard = React.memo(({ product, id, quantity, onOpen }: ProductCardProps) => {
-  const { setQuantity, quantity: localQuantity } = useChangeProductQuantity(id, quantity);
-
-  const [addItem, {}] = useAddCartItemMutation();
+  const [addItem, { isLoading }] = useAddCartItemMutation();
 
   const { image, description, price, rating, title } = product;
 
@@ -30,12 +28,10 @@ export const ProductCard = React.memo(({ product, id, quantity, onOpen }: Produc
   return (
     <div className={classes.card}>
       <div className={classes.image} onClick={() => onOpen()}>
-        {/* <div className={classes.image}> */}
         <img src={image}></img>
       </div>
       <div className={classes.info}>
         <div className={classes.title} onClick={() => onOpen()}>
-          {/* <div className={classes.title}> */}
           <div className={classes.itemName}>
             <h3>{title}</h3>
           </div>
@@ -56,25 +52,15 @@ export const ProductCard = React.memo(({ product, id, quantity, onOpen }: Produc
               src={cardInfoIconStar}
             ></img>
           </div>
-          {localQuantity === undefined || localQuantity === 0 ? (
-            <button
+          {quantity === undefined ? (
+            <AddButton
+              children="Add"
               onClick={() => addItem({ productId: id, quantity: 1 })}
+              disabled={isLoading}
               className={classes.purchaseButton}
-              type="button"
-            >
-              Add
-            </button>
-          ) : (
-            <QuantityControl
-              onDecrement={() => setQuantity((p) => Math.max(0, p - 1))}
-              onIncrement={() => setQuantity((p) => p + 1)}
-              quantity={localQuantity}
             />
-            // <QuantityControl
-            //   onDecrement={() => decrease(quantity - 1)}
-            //   onIncrement={() => increase(quantity + 1)}
-            //   quantity={qwe}
-            // />
+          ) : (
+            <ChangeProductQuantityControl id={id} initialQuantity={quantity} />
           )}
         </div>
       </div>

@@ -124,12 +124,5 @@
 }
 
 .addButton {
-  border: none;
-  background-color: #5c6bc0;
-  border-radius: 5px;
   padding-block: 10px;
-}
-.addButton:hover {
-  background-color: #43bad2;
-  transition: background-color 0.2s ease;
 }

@@ -6,11 +6,11 @@ import { useUpdateCartItemMutation } from '@shared/api';
 import { useDebounce } from '@shared/lib/hooks';
 
 export const useChangeProductQuantity = (id: ProductId, initialQuantity: number = 0) => {
-  const [updateProductQuantity] = useUpdateCartItemMutation();
+  const [updateProductQuantity, { isLoading }] = useUpdateCartItemMutation();
 
   const [quantity, setQuantity] = useState(initialQuantity ?? 0);
 
-  const debounced = useDebounce(quantity, 200);
+  const debounced = useDebounce(quantity, 1000);
 
   useEffect(() => {
     if (initialQuantity === debounced) return;
@@ -26,5 +26,6 @@ export const useChangeProductQuantity = (id: ProductId, initialQuantity: number 
   return {
     quantity,
     setQuantity,
+    isLoading,
   };
 };

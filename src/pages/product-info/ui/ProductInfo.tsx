@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router';
 
-import { useChangeProductQuantity } from '@features/product/change-product-quantity/model/useChangeProductQuantity';
-
 import { useAddCartItemMutation, useGetProductQuery } from '@shared/api';
-import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
+import { AddButton } from '@shared/ui/add-button/AddButton';
+import { Loader } from '@shared/ui/Loader/Loader';
 import { QuantityControl } from '@shared/ui/quantity-control/QuantityControl';
 
 import backToIcon from '@assets/backToIcon.png';
@@ -15,16 +14,12 @@ import classes from './ProductInfo.module.css';
 
 export const ProductInfo = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [quantity, setQuantity] = useState(0);
   const { id = '' } = useParams<{ id: string }>();
-  // const { increase } = useChangeProductQuantity(+id);
-  // const product = useAppSelector((state) => state.products.entities?.[+id!]);
-  // const status = useAppSelector((state) => state.products.fetchProductStatus);
 
-  const { data: product } = useGetProductQuery(id);
-  const [addProduct, { isLoading }] = useAddCartItemMutation();
+  const { data: product, isLoading } = useGetProductQuery(id);
+  const [addItem, { isLoading: isLoadingAddToCart }] = useAddCartItemMutation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,8 +27,8 @@ export const ProductInfo = () => {
 
   const handleAddButtonClick = async () => {
     if (quantity > 0) {
-      await addProduct({ productId: +id, quantity });
       setQuantity(0);
+      await addItem({ productId: +id, quantity });
     }
   };
 
@@ -80,19 +75,23 @@ export const ProductInfo = () => {
               <div className={classes.quantityBlock}>
                 <span>Quantity</span>
                 <QuantityControl
+                  disabled={isLoadingAddToCart}
                   quantity={quantity}
                   onIncrement={() => setQuantity((p) => p + 1)}
-                  onDecrement={() => quantity >= 1 && setQuantity((p) => p - 1)}
+                  onDecrement={() => setQuantity((p) => Math.max(0, p - 1))}
                 />
               </div>
-              <button className={classes.addButton} onClick={handleAddButtonClick}>
-                Add to cart
-              </button>
+              <AddButton
+                children="Add to cart"
+                onClick={handleAddButtonClick}
+                disabled={isLoadingAddToCart}
+                className={classes.addButton}
+              />
             </div>
           </div>
         </div>
-      ) : status === 'pending' ? (
-        <div>Loading</div>
+      ) : isLoading ? (
+        <Loader />
       ) : (
         <div>Something wrong</div>
       )}

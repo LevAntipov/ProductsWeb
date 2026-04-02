@@ -1,31 +1,65 @@
 import { Link } from 'react-router';
 
+import { useForm } from 'react-hook-form';
+
 import { FieldError } from '@shared/ui/FieldError/FieldError';
 import { Input } from '@shared/ui/Input/Input';
 
 import { useLogin } from '../model/useLogin';
 import classes from './sign-in.module.css';
 
+// export const LoginForm = () => {
+//   const { email, password, error, handleLogin, setEmail, setPassword } = useLogin();
+
+//   return (
+//     <form className={classes.authPage}>
+//       <h2>Login</h2>
+//       <Input type="email" value={email} onChange={setEmail} placeholder="email" />
+
+//       <Input type="password" value={password} onChange={setPassword} placeholder="password" />
+
+//       {error && <FieldError errorMessage={error} />}
+
+//       <button onClick={handleLogin}>Login</button>
+
+//       <span>
+//         New to this shop?{' '}
+//         <Link to={'register'} className={classes.registerLink}>
+//           Register
+//         </Link>
+//       </span>
+//     </form>
+//   );
+// };
+
+type Inputs = {
+  example: string;
+  exampleRequired: string;
+};
+
 export const LoginForm = () => {
-  const { email, password, error, handleLogin, setEmail, setPassword } = useLogin();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  console.log(watch('example')); // watch input value by passing the name of it
 
   return (
-    <form className={classes.authPage}>
-      <h2>Login</h2>
-      <Input type="email" value={email} onChange={setEmail} placeholder="email" />
+    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      <input defaultValue="test" {...register('example')} />
 
-      <Input type="password" value={password} onChange={setPassword} placeholder="password" />
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register('exampleRequired', { required: true })} />
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired && <span>This field is required</span>}
 
-      {error && <FieldError errorMessage={error} />}
-
-      <button onClick={handleLogin}>Login</button>
-
-      <span>
-        New to this shop?{' '}
-        <Link to={'register'} className={classes.registerLink}>
-          Register
-        </Link>
-      </span>
+      <input type="submit" />
     </form>
   );
 };
