@@ -1,20 +1,35 @@
+import type { InputHTMLAttributes } from 'react';
+import type { FieldError as RHFFieldError } from 'react-hook-form';
+
+import { FieldError } from '../FieldError/FieldError';
 import classes from './Input.module.css';
 
-interface InputProps {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   placeholder: string;
-  value: string;
-  onChange: (value: string) => void;
-  type: 'text' | 'email' | 'password';
+  type?: 'text' | 'email' | 'password';
+  labelValue?: string;
+  error?: RHFFieldError;
 }
 
-export const Input = ({ placeholder, value, onChange, type = 'text' }: InputProps) => {
+export const Input = ({
+  placeholder,
+  value,
+  type = 'text',
+  error,
+  labelValue,
+  ...props
+}: InputProps) => {
   return (
-    <input
-      className={classes.input}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    ></input>
+    <div>
+      {labelValue && <label>{labelValue}</label>}
+      <input
+        className={classes.input}
+        type={type}
+        placeholder={placeholder}
+        {...props}
+      ></input>
+
+      {error && <FieldError errorMessage={error?.message ?? ''} />}
+    </div>
   );
 };

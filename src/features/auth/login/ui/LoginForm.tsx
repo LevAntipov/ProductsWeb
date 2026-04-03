@@ -1,6 +1,5 @@
-import { Link } from 'react-router';
-
-import { useForm } from 'react-hook-form';
+import type { ChangeEvent } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import { FieldError } from '@shared/ui/FieldError/FieldError';
 import { Input } from '@shared/ui/Input/Input';
@@ -8,58 +7,66 @@ import { Input } from '@shared/ui/Input/Input';
 import { useLogin } from '../model/useLogin';
 import classes from './sign-in.module.css';
 
-// export const LoginForm = () => {
-//   const { email, password, error, handleLogin, setEmail, setPassword } = useLogin();
-
-//   return (
-//     <form className={classes.authPage}>
-//       <h2>Login</h2>
-//       <Input type="email" value={email} onChange={setEmail} placeholder="email" />
-
-//       <Input type="password" value={password} onChange={setPassword} placeholder="password" />
-
-//       {error && <FieldError errorMessage={error} />}
-
-//       <button onClick={handleLogin}>Login</button>
-
-//       <span>
-//         New to this shop?{' '}
-//         <Link to={'register'} className={classes.registerLink}>
-//           Register
-//         </Link>
-//       </span>
-//     </form>
-//   );
-// };
-
 type Inputs = {
-  example: string;
-  exampleRequired: string;
+  email: string;
+  password: string;
 };
 
 export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    clearErrors,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<Inputs>({ mode: 'onBlur', reValidateMode: 'onBlur' });
 
-  console.log(watch('example')); // watch input value by passing the name of it
+  const { authError, handleLogin } = useLogin();
+
+  const emailField = register('email', {
+    required: { message: 'email is required', value: true },
+    pattern: {
+      value: /[a-zA-Z0-9_%+.\-]+@[a-zA-Z0-9]+[a-zA-Z0-9\-]*\.[a-zA-Z]{2,4}/,
+      message: 'Enter a valid email',
+    },
+  });
+  const passField = register('password', {
+    required: { message: 'Password is required', value: true },
+    minLength: { message: 'min 6 symbols', value: 6 },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    handleLogin(data.email, data.password).catch(() => console.log('ERROR'));
+  };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <input defaultValue="test" {...register('example')} />
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.authPage}>
+      <h2>Login</h2>
+      <label>Email: </label>
+      <Input
+        {...emailField}
+        placeholder="email"
+        type="email"
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          emailField.onChange(e);
+          clearErrors('email');
+        }}
+        error={errors.email}
+      />
 
-      {/* include validation with required or other standard HTML validation rules */}
-      <input {...register('exampleRequired', { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
+      <label>Password: </label>
+      <Input
+        {...passField}
+        placeholder="password"
+        type="password"
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          passField.onChange(e);
+          clearErrors('password');
+        }}
+        error={errors.password}
+      />
 
-      <input type="submit" />
+      {authError && <FieldError errorMessage={authError.message} />}
+      <button type="submit">Log in</button>
     </form>
   );
 };

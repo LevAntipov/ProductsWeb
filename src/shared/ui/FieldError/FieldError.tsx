@@ -5,5 +5,9 @@ interface FieldErrorProps {
 }
 
 export const FieldError = ({ errorMessage }: FieldErrorProps) => {
-  return <span className={classes.error}>{errorMessage}</span>;
+  return (
+    <div>
+      <span className={classes.error}>{errorMessage}</span>
+    </div>
+  );
 };
