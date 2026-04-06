@@ -7,7 +7,6 @@ import { PaymentBlock } from './PaymentBlock';
 
 export const CartPage = () => {
   const { data: cart, isLoading } = useGetCartQuery();
-
   if (isLoading) {
     return (
       <div className={classes.container}>

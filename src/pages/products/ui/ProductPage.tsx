@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useNavigate } from 'react-router';
 
 import { useSelector } from 'react-redux';
@@ -6,21 +8,17 @@ import { selectFilteredProducts } from '@entities/product/model/selectors';
 import type { ProductId } from '@entities/product/model/types';
 
 import { useGetCartQuery, useGetProductsQuery } from '@shared/api';
+import { authClient } from '@shared/lib/auth-client';
 import { Loader } from '@shared/ui/Loader/Loader';
+
+import { useCartQuantitiesMap } from '@widgets/header/Header';
 
 import { ProductsList } from './ProductsList';
 
 export const ProductsPage = () => {
   const navigate = useNavigate();
 
-  const { data: cart } = useGetCartQuery();
-  const chosenProducts = cart?.items.reduce(
-    (acc, item) => {
-      acc[item.productId] = item.quantity;
-      return acc;
-    },
-    {} as Record<ProductId, number>
-  );
+  const { chosenProducts } = useCartQuantitiesMap();
 
   const { data: products, isLoading } = useGetProductsQuery();
 
@@ -37,7 +35,7 @@ export const ProductsPage = () => {
       {products && (
         <ProductsList
           products={filteredProducts}
-          quantities={chosenProducts}
+          quantities={chosenProducts ?? {}}
           onOpenProduct={openProduct}
         />
       )}

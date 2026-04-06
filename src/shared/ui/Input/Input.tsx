@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes } from 'react';
+
 import type { FieldError as RHFFieldError } from 'react-hook-form';
 
 import { FieldError } from '../FieldError/FieldError';
@@ -25,6 +26,7 @@ export const Input = ({
       <input
         className={classes.input}
         type={type}
+        value={value}
         placeholder={placeholder}
         {...props}
       ></input>

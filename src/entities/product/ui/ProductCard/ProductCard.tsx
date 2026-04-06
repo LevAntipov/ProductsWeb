@@ -2,10 +2,8 @@ import React from 'react';
 
 import type { ProductType } from '@entities/product/model/types';
 
+import { AddToCartButton } from '@features/cart/add-to-cart/ui/addToCartButton';
 import { ChangeProductQuantityControl } from '@features/product/change-product-quantity/ui/ChangeProductQuantityControl';
-
-import { useAddCartItemMutation } from '@shared/api';
-import { AddButton } from '@shared/ui/add-button/AddButton';
 
 import cardInfoIconStar from '@assets/cardInfoIconStar.svg';
 
@@ -19,8 +17,6 @@ export interface ProductCardProps {
 }
 
 export const ProductCard = React.memo(({ product, id, quantity, onOpen }: ProductCardProps) => {
-  const [addItem, { isLoading }] = useAddCartItemMutation();
-
   const { image, description, price, rating, title } = product;
 
   if (!product) return <div className={classes.card}>Loading...</div>;
@@ -45,20 +41,10 @@ export const ProductCard = React.memo(({ product, id, quantity, onOpen }: Produc
             <span>
               {rating.rate} ({rating.count})
             </span>
-            <img
-              className={classes.iconStar}
-              width="10px"
-              height="10px"
-              src={cardInfoIconStar}
-            ></img>
+            <img className={classes.iconStar} src={cardInfoIconStar}></img>
           </div>
           {quantity === undefined ? (
-            <AddButton
-              children="Add"
-              onClick={() => addItem({ productId: id, quantity: 1 })}
-              disabled={isLoading}
-              className={classes.purchaseButton}
-            />
+            <AddToCartButton id={id} children="Add" className={classes.purchaseButton} />
           ) : (
             <ChangeProductQuantityControl id={id} initialQuantity={quantity} />
           )}

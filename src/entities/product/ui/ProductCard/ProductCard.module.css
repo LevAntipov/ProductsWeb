@@ -108,6 +108,8 @@
 .iconStar {
   position: absolute;
   top: 23px;
+  width: 10px;
+  height: 10px;
 }
 
 .purchaseButton {

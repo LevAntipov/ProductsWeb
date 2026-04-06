@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router';
 
-import { useAddCartItemMutation, useGetProductQuery } from '@shared/api';
-import { AddButton } from '@shared/ui/add-button/AddButton';
+import { AddToCartButton } from '@features/cart/add-to-cart/ui/addToCartButton';
+
+import { useGetProductQuery } from '@shared/api';
 import { Loader } from '@shared/ui/Loader/Loader';
 import { QuantityControl } from '@shared/ui/quantity-control/QuantityControl';
 
@@ -14,23 +15,14 @@ import classes from './ProductInfo.module.css';
 
 export const ProductInfo = () => {
   const navigate = useNavigate();
-
   const [quantity, setQuantity] = useState(0);
   const { id = '' } = useParams<{ id: string }>();
 
   const { data: product, isLoading } = useGetProductQuery(id);
-  const [addItem, { isLoading: isLoadingAddToCart }] = useAddCartItemMutation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const handleAddButtonClick = async () => {
-    if (quantity > 0) {
-      setQuantity(0);
-      await addItem({ productId: +id, quantity });
-    }
-  };
 
   return (
     <>
@@ -75,16 +67,16 @@ export const ProductInfo = () => {
               <div className={classes.quantityBlock}>
                 <span>Quantity</span>
                 <QuantityControl
-                  disabled={isLoadingAddToCart}
                   quantity={quantity}
                   onIncrement={() => setQuantity((p) => p + 1)}
                   onDecrement={() => setQuantity((p) => Math.max(0, p - 1))}
                 />
               </div>
-              <AddButton
+              <AddToCartButton
+                id={+id}
+                quantity={quantity}
+                onSuccess={() => setQuantity(0)}
                 children="Add to cart"
-                onClick={handleAddButtonClick}
-                disabled={isLoadingAddToCart}
                 className={classes.addButton}
               />
             </div>

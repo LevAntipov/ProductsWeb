@@ -24,7 +24,6 @@ const baseQuery = fetchBaseQuery({
   credentials: 'include',
   prepareHeaders: (headers) => headers,
 });
-
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
 
 export const api = createApi({

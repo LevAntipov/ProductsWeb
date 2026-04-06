@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import { FieldError } from '@shared/ui/FieldError/FieldError';
@@ -34,8 +35,8 @@ export const LoginForm = () => {
     minLength: { message: 'min 6 symbols', value: 6 },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    handleLogin(data.email, data.password).catch(() => console.log('ERROR'));
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    handleLogin(data.email, data.password);
   };
 
   return (

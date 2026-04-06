@@ -23,7 +23,7 @@ export const SearchInput = () => {
       type="text"
       placeholder="Search something"
       value={searchValue}
-      onChange={setSearchValue}
+      onChange={(e) => setSearchValue(e.target.value)}
     />
   );
 };

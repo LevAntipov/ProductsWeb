@@ -5,7 +5,7 @@ import classes from './ProductsPage.module.css';
 
 type Props = {
   products: ProductType[];
-  quantities?: Record<number, number>;
+  quantities: Record<number, number>;
   onOpenProduct: (id: number) => void;
 };
 
@@ -26,19 +26,5 @@ export const ProductsList = ({ products, quantities, onOpenProduct }: Props) => 
         <div>No products</div>
       )}
     </div>
-    // <div className={classes.container}>
-    //   {ids.length ? (
-    //     ids.map((id) => (
-    //       <ProductCard
-    //         key={id}
-    //         id={id}
-    //         quantity={quantities[id]}
-    //         onOpen={() => onOpenProduct(id)}
-    //       />
-    //     ))
-    //   ) : (
-    //     <div>No products</div>
-    //   )}
-    // </div>
   );
 };

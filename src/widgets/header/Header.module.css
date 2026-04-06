@@ -66,6 +66,7 @@ a {
   background-color: rgb(26, 27, 34);
   padding-inline: 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .chosenFilter img {
@@ -119,6 +120,7 @@ a {
 .shoppingCart {
   position: relative;
   display: inline-flex;
+  margin-left: 10px;
 }
 
 .cartBadge {

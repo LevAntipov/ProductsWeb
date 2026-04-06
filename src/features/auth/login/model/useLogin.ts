@@ -6,23 +6,23 @@ export const useLogin = () => {
   const [authError, setAuthError] = useState<Error | null>(null);
 
   const handleLogin = async (email: string, password: string) => {
-    const { data } = await authClient.signIn.email(
+    debugger;
+    const {} = await authClient.signIn.email(
       {
         email,
         password,
         callbackURL: '/products',
       },
       {
-        onSuccess: () => {
-          alert('logged in!');
-        },
+        onSuccess: () => {},
         onError: (ctx) => {
           setAuthError(ctx.error);
+          console.log(ctx);
         },
       }
     );
 
-    // console.log('LOGIN DATA:', data);
+    debugger;
   };
 
   return {
