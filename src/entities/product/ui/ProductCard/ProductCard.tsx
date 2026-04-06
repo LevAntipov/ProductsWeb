@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { ProductType } from '@entities/product/model/types';
 
-import { AddToCartButton } from '@features/cart/add-to-cart/ui/addToCartButton';
+import { AddToCartButton } from '@features/cart/add-to-cart/ui/AddToCartButton';
 import { ChangeProductQuantityControl } from '@features/product/change-product-quantity/ui/ChangeProductQuantityControl';
 
 import cardInfoIconStar from '@assets/cardInfoIconStar.svg';

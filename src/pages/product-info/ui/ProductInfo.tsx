@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router';
 
-import { AddToCartButton } from '@features/cart/add-to-cart/ui/addToCartButton';
+import { AddToCartButton } from '@features/cart/add-to-cart/ui/AddToCartButton';
 
 import { useGetProductQuery } from '@shared/api';
 import { Loader } from '@shared/ui/Loader/Loader';
