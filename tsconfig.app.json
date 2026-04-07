@@ -26,13 +26,14 @@
 
     "baseUrl": "./src",
     "paths": {
+      "@app/*": ["./app/*"],
       "@assets/*": ["./assets/*"],
       "@pages/*": ["./pages/*"],
       "@entities/*": ["./entities/*"],
       "@shared/*": ["./shared/*"],
       "@widgets/*": ["./widgets/*"],
-      "@features/*": ["./features/*"],
-    },
+      "@features/*": ["./features/*"]
+    }
   },
   "include": ["src"]
 }

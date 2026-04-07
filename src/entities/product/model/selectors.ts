@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type { RootState } from 'app/store';
+import type { RootState } from '@app/appStore';
 
-import { productsApi } from '@shared/api';
+import { productsApi } from '../api/product-api';
 
 export const selectFilterStr = (state: RootState) => state.products.filterSearch;
 export const selectFilterMethod = (state: RootState) => state.products.filterMethod;

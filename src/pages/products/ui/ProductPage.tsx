@@ -2,12 +2,11 @@ import { useNavigate } from 'react-router';
 
 import { useSelector } from 'react-redux';
 
+import { useCartQuantitiesMap } from '@entities/cart/model/useCartQuantitiesMap';
+import { useGetProductsQuery } from '@entities/product/api/product-api';
 import { selectFilteredProducts } from '@entities/product/model/selectors';
 
-import { useGetProductsQuery } from '@shared/api';
 import { Loader } from '@shared/ui/Loader/Loader';
-
-import { useCartQuantitiesMap } from '@widgets/header/Header';
 
 import { ProductsList } from './ProductsList';
 

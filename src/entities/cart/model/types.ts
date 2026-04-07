@@ -10,3 +10,19 @@ export interface CartItem {
 }
 
 export type ProductsQuantity = number;
+
+export type GetCartResponse = {
+  items: CartItem[];
+  price: number;
+  quantity: number;
+};
+
+export type AddCartItemRequest = {
+  productId: number;
+  quantity?: number;
+};
+
+export type UpdateCartItemRequest = {
+  itemId: number;
+  quantity: number;
+};

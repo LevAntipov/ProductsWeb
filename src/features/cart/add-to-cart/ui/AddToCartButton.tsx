@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 
 import { useNavigate } from 'react-router';
 
+import { useAddCartItemMutation } from '@entities/cart/api/cart-api';
 import type { ProductId } from '@entities/product/model/types';
 
-import { useAddCartItemMutation } from '@shared/api';
 import { authClient } from '@shared/lib/auth-client';
 import { AddButton } from '@shared/ui/add-button/AddButton';
 

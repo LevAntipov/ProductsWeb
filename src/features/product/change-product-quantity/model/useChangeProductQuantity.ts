@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { useUpdateCartItemMutation } from '@entities/cart/api/cart-api';
 import type { ProductId } from '@entities/product/model/types';
 
-import { useUpdateCartItemMutation } from '@shared/api';
 import { useDebounce } from '@shared/lib/hooks';
 
 export const useChangeProductQuantity = (id: ProductId, initialQuantity: number = 0) => {

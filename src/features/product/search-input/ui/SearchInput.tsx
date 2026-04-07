@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@app/appStore';
+
 import { selectFilterStr } from '@entities/product/model/selectors';
 import { setFilterSearch } from '@entities/product/model/slice';
 
-import { useAppDispatch, useAppSelector, useDebounce } from '@shared/lib/hooks';
+import { useDebounce } from '@shared/lib/hooks';
 import { Input } from '@shared/ui/Input/Input';
 
 export const SearchInput = () => {

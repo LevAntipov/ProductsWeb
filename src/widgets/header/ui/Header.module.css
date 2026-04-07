@@ -50,69 +50,6 @@ a {
   position: relative;
 }
 
-.filterButton {
-  width: 150px;
-  border: none;
-  background-color: inherit;
-  color: rgb(230, 230, 233);
-}
-
-.filter {
-  display: flex;
-}
-
-.chosenFilter {
-  display: flex;
-  background-color: rgb(26, 27, 34);
-  padding-inline: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.chosenFilter img {
-  width: 15px;
-  height: 15px;
-  position: relative;
-  left: 9px;
-  top: 4px;
-}
-
-.showMoreIconUp {
-  position: relative;
-  left: 7px;
-  top: 4px;
-  width: 15px;
-  height: 15px;
-  transform: rotate(180deg);
-}
-
-.showMoreIconDown {
-  position: relative;
-  left: 7px;
-  top: 4px;
-  width: 15px;
-  height: 15px;
-}
-
-.filterMethods {
-  width: 155px;
-  position: absolute;
-  left: -1px;
-  padding: 5px;
-  top: 35px;
-  z-index: 1;
-  border-radius: 10px;
-  background-color: rgba(68, 63, 84, 0.82);
-}
-
-.filterMethods div:hover {
-  color: #43bad2;
-}
-
-.nonSelected {
-  display: none;
-}
-
 .cartWrapper {
   position: relative;
 }

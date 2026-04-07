@@ -7,3 +7,10 @@
 
 
 доделать логику onSuccess + оформить Loading
+
+в entities ProductCard импорт фичи
+
+
+onQueryStarted - почитать и применить
+
+

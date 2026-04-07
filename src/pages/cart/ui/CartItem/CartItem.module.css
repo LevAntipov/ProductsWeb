@@ -10,6 +10,7 @@
 .image {
   display: flex;
   width: 120px;
+  flex-shrink: 0;
   padding: 20px;
   background-color: #1a1b22;
   border-radius: 10px;
@@ -69,5 +70,11 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .image {
+    width: 100px;
   }
 }
