@@ -10,7 +10,7 @@ export const useChangeProductQuantity = (id: ProductId, initialQuantity: number 
 
   const [quantity, setQuantity] = useState(initialQuantity ?? 0);
 
-  const debounced = useDebounce(quantity, 1000);
+  const debounced = useDebounce(quantity, 500);
 
   useEffect(() => {
     if (initialQuantity === debounced) return;

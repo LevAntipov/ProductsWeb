@@ -6,7 +6,6 @@ export const useLogin = () => {
   const [authError, setAuthError] = useState<Error | null>(null);
 
   const handleLogin = async (email: string, password: string) => {
-    debugger;
     const {} = await authClient.signIn.email(
       {
         email,
@@ -21,8 +20,6 @@ export const useLogin = () => {
         },
       }
     );
-
-    debugger;
   };
 
   return {

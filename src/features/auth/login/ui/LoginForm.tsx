@@ -2,6 +2,7 @@ import type { ChangeEvent } from 'react';
 
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import { Button } from '@shared/ui/add-button/AddButton';
 import { FieldError } from '@shared/ui/FieldError/FieldError';
 import { Input } from '@shared/ui/Input/Input';
 
@@ -40,7 +41,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.authPage}>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.authForm}>
       <h2>Login</h2>
       <label>Email: </label>
       <Input
@@ -66,8 +67,8 @@ export const LoginForm = () => {
         error={errors.password}
       />
 
+      <Button children="Log in" type="button" />
       {authError && <FieldError errorMessage={authError.message} />}
-      <button type="submit">Log in</button>
     </form>
   );
 };

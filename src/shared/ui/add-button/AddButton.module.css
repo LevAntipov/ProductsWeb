@@ -1,14 +1,14 @@
-.addButton {
+.button {
   border-radius: 5px;
   background-color: #5c6bc0;
   transition: 0.2s ease;
   border: none;
 }
 
-.addButton:hover {
+.button:hover {
   background-color: #43bad2;
 }
 
-.addButton:disabled {
+.button:disabled {
   background-color: #55577d;
 }

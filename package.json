@@ -5,9 +5,9 @@
   "type": "module",
   "homepage": "https://levantipov.github.io/ProductsWeb",
   "scripts": {
-    "dev": "vite",
     "dev:vite": "vite",
     "dev:server": "tsx watch server/src/index.ts",
+    "dev": "concurrently 'npm run dev:vite' 'npm run  dev:server'",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json}\"",
@@ -34,6 +34,7 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "vite": "^7.1.7",
+    "tsx": "^4.21.0",
     "vite-tsconfig-paths": "^6.1.1"
   }
 }

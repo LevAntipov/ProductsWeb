@@ -22,7 +22,7 @@ export const useCartQuantitiesMap = () => {
     );
   }, [cart, isAuthenticated]);
 
-  const totalQuantity = cart?.quantity ?? 0;
+  const totalQuantity = isAuthenticated ? (cart?.quantity ?? 0) : 0;
 
   return {
     chosenProducts,
