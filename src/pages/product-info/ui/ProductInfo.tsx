@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router';
 
+import { useGetProductQuery } from '@entities/product/api/product-api';
+
 import { AddToCartButton } from '@features/cart/add-to-cart/ui/AddToCartButton';
 
-import { useGetProductQuery } from '@shared/api';
 import { Loader } from '@shared/ui/Loader/Loader';
 import { QuantityControl } from '@shared/ui/quantity-control/QuantityControl';
 

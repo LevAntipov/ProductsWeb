@@ -126,3 +126,20 @@
 .addButton {
   padding-block: 10px;
 }
+
+@media (max-width: 550px) {
+  .product {
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+  }
+  .moreInfoBlock {
+    max-width: 100%;
+  }
+  .img {
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+    height: auto; /* ← вместо 100% */
+  }
+}

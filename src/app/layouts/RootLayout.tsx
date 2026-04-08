@@ -2,7 +2,7 @@ import { Outlet } from 'react-router';
 
 import { Layout } from '@shared/ui/Layout/Layout';
 
-import { Header } from '@widgets/header/Header';
+import { Header } from '@widgets/header/ui/Header';
 
 export const RootLayout = () => {
   return (

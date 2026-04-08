@@ -1,12 +1,12 @@
-import type { ProductType } from '@entities/product/model/types';
-import { ProductCard } from '@entities/product/ui/ProductCard/ProductCard';
+import type { ProductId, ProductType } from '@entities/product/model/types';
+import { ProductCard } from '@entities/product/ui/ProductCard';
 
 import classes from './ProductsPage.module.css';
 
 type Props = {
   products: ProductType[];
   quantities: Record<number, number>;
-  onOpenProduct: (id: number) => void;
+  onOpenProduct: (id: ProductId) => void;
 };
 
 export const ProductsList = ({ products, quantities, onOpenProduct }: Props) => {
@@ -19,7 +19,7 @@ export const ProductsList = ({ products, quantities, onOpenProduct }: Props) => 
             product={item}
             id={item.id}
             quantity={quantities[item.id]}
-            onOpen={() => onOpenProduct(item.id)}
+            onOpen={onOpenProduct}
           />
         ))
       ) : (

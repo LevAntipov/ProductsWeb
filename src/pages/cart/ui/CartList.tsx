@@ -1,6 +1,6 @@
 import type { CartItem as ICartItem } from '@entities/cart/model/types';
 
-import { CartItem } from './CartItem';
+import { CartItem } from './CartItem/CartItem';
 import classes from './CartPage.module.css';
 
 interface CartListProps {

@@ -1,4 +1,5 @@
-import { useGetCartQuery } from '@shared/api';
+import { useGetCartQuery } from '@entities/cart/api/cart-api';
+
 import { Loader } from '@shared/ui/Loader/Loader';
 
 import { CartList } from './CartList';

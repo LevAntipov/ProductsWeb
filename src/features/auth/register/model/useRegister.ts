@@ -2,41 +2,35 @@ import { useState } from 'react';
 
 import { authClient } from '@shared/lib/auth-client';
 
+import type { UserData } from './types';
+
 export const useRegister = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
-  const handleRegister = async () => {
-    if (password !== confirmPassword) {
-      return setError('Passwords are not equal');
-    }
+  const handleRegister = async (userData: UserData) => {
+    const {} = await authClient.signUp.email(
+      {
+        ...userData,
+        callbackURL: '/products',
+      },
+      {
+        onError(ctx) {
+          setError(ctx.error);
+        },
+        onSuccess() {
+          alert('registered !');
+        },
+      }
+    );
+  };
 
-    const { data, error } = await authClient.signUp.email({
-      email,
-      password,
-      name: 'User',
-    });
-
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
-    console.log('USER:', data);
-    alert('registered!');
+  const checkPasswords = (a: string, b: string) => {
+    return a === b;
   };
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
     error,
-    setError,
     handleRegister,
+    checkPasswords,
   };
 };

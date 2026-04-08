@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import type { AppDispatch, RootState } from 'app/store';
-
 export const useDebounce = <T extends number | string>(value: T, delay: number = 200): T => {
-  const [debounced, setDebounced] = useState(value);
+  const [debounced, setDebounced] = useState<T>(value);
 
   useEffect(() => {
+    if (value == 0) {
+      setDebounced(value);
+      return;
+    }
     let id = setTimeout(() => {
       setDebounced(value);
     }, delay);
@@ -17,6 +17,3 @@ export const useDebounce = <T extends number | string>(value: T, delay: number =
 
   return debounced;
 };
-
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector = useSelector.withTypes<RootState>();

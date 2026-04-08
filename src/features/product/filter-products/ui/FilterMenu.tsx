@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@app/appStore';
+
 import { selectFilterMethod } from '@entities/product/model/selectors';
 import { setFilterMethod } from '@entities/product/model/slice';
 import type { FilterMethodType } from '@entities/product/model/types';
 
-import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
-
 import selectedIcon from '@assets/selectedIcon.png';
 import showMoreIcon from '@assets/showMoreIcon.png';
 
-import classes from './Header.module.css';
+import classes from './FilterMenu.module.css';
 
 interface FilterMenuProps {
   options: string[];

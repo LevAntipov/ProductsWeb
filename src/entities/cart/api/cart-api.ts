@@ -1,48 +1,6 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import { api } from '@shared/api/base-api';
 
-import type { CartItem } from '@entities/cart/model/types';
-import type { ProductType } from '@entities/product/model/types';
-
-export type GetCartResponse = {
-  items: CartItem[];
-  price: number;
-  quantity: number;
-};
-
-export type AddCartItemRequest = {
-  productId: number;
-  quantity?: number;
-};
-
-export type UpdateCartItemRequest = {
-  itemId: number;
-  quantity: number;
-};
-
-const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3005/api/',
-  credentials: 'include',
-  prepareHeaders: (headers) => headers,
-});
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
-
-export const api = createApi({
-  reducerPath: 'api',
-  baseQuery: baseQueryWithRetry,
-  tagTypes: ['Cart', 'CartItem', 'Product'],
-  endpoints: () => ({}),
-});
-
-export const productsApi = api.injectEndpoints({
-  endpoints: (build) => ({
-    getProducts: build.query<ProductType[], void>({
-      query: () => 'products',
-    }),
-    getProduct: build.query<ProductType, string>({
-      query: (id) => `products/${id}`,
-    }),
-  }),
-});
+import type { AddCartItemRequest, GetCartResponse, UpdateCartItemRequest } from '../model/types';
 
 export const cartApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -100,5 +58,3 @@ export const {
   useUpdateCartItemMutation,
   useDeleteCartItemMutation,
 } = cartApi;
-
-export const { useGetProductsQuery, useGetProductQuery } = productsApi;

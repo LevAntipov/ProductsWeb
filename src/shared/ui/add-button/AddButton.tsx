@@ -4,20 +4,27 @@ import clsx from 'clsx';
 
 import classes from './AddButton.module.css';
 
-export interface AddButtonProps {
+export interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   children: ReactNode;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-export const AddButton = ({ disabled, onClick, children, className }: AddButtonProps) => {
+export const Button = ({
+  disabled,
+  onClick,
+  children,
+  className,
+  type = 'button',
+}: ButtonProps) => {
   return (
     <button
-      className={clsx(classes.addButton, className)}
+      className={clsx(classes.button, className)}
       onClick={onClick}
       disabled={disabled}
-      type="button"
+      type={type}
     >
       {children}
     </button>
