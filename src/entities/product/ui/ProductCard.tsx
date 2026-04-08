@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { ProductType } from '@entities/product/model/types';
+import type { ProductId, ProductType } from '@entities/product/model/types';
 
 import { AddToCartButton } from '@features/cart/add-to-cart/ui/AddToCartButton';
 import { ChangeProductQuantityControl } from '@features/product/change-product-quantity/ui/ChangeProductQuantityControl';
@@ -13,21 +13,21 @@ export interface ProductCardProps {
   product: ProductType;
   id: number;
   quantity?: number;
-  onOpen: () => void;
+  onOpen: (id: ProductId) => void;
 }
 
 export const ProductCard = React.memo(({ product, id, quantity, onOpen }: ProductCardProps) => {
   const { image, description, price, rating, title } = product;
-
+  console.log('rendered ', id);
   if (!product) return <div className={classes.card}>Loading...</div>;
 
   return (
     <div className={classes.card}>
-      <div className={classes.image} onClick={() => onOpen()}>
+      <div className={classes.image} onClick={() => onOpen(id)}>
         <img src={image}></img>
       </div>
       <div className={classes.info}>
-        <div className={classes.title} onClick={() => onOpen()}>
+        <div className={classes.title} onClick={() => onOpen(id)}>
           <div className={classes.itemName}>
             <h3>{title}</h3>
           </div>

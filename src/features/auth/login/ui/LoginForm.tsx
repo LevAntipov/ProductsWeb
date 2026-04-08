@@ -67,7 +67,7 @@ export const LoginForm = () => {
         error={errors.password}
       />
 
-      <Button children="Log in" type="button" />
+      <Button children="Log in" type="submit" />
       {authError && <FieldError errorMessage={authError.message} />}
     </form>
   );

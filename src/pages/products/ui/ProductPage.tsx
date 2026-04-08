@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { useNavigate } from 'react-router';
 
 import { useSelector } from 'react-redux';
@@ -19,9 +21,9 @@ export const ProductsPage = () => {
 
   const filteredProducts = useSelector(selectFilteredProducts);
 
-  const openProduct = (id: number) => {
+  const openProduct = useCallback((id: number) => {
     navigate(`/products/${id}`);
-  };
+  }, []);
 
   if (isLoading) return <Loader />;
 

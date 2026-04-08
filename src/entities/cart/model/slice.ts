@@ -1,27 +1,27 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { ProductsQuantity } from '@entities/cart/model/types';
-import type { ProductId, ProductType } from '@entities/product/model/types';
+import type { ProductId } from '@entities/product/model/types';
 
 type initialStateType = {
-  chosenProducts: Record<ProductId, ProductsQuantity>;
-  chosenProductsData: Record<ProductId, ProductType>;
+  fetchingIdsInProgress: ProductId[];
 };
 
-interface QuantityAction {
-  id: ProductId;
-  quantity: number;
-}
-
 const initialState: initialStateType = {
-  chosenProducts: {},
-  chosenProductsData: {},
+  fetchingIdsInProgress: [],
 };
 
 const cartsReducer = createSlice({
   name: 'carts',
   initialState,
   reducers: {
+    setFetchingId: (state, action: PayloadAction<ProductId>) => {
+      state.fetchingIdsInProgress.push(action.payload);
+    },
+    deleteFetchingId: (state, action: PayloadAction<ProductId>) => {
+      state.fetchingIdsInProgress = state.fetchingIdsInProgress.filter(
+        (id) => id !== action.payload
+      );
+    },
     // checkChosenProducts: (state) => {
     //   let storedCart = window.localStorage.getItem("cart");
     //   if (storedCart) {
@@ -61,11 +61,6 @@ const cartsReducer = createSlice({
 
 const { actions, reducer } = cartsReducer;
 
-export const {
-  // decreaseQuantity,
-  // increaseQuantity,
-  // deleteChosenProduct,
-  // checkChosenProducts,
-} = actions;
+export const { deleteFetchingId, setFetchingId } = actions;
 
 export default reducer;
