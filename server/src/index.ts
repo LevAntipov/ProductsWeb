@@ -11,11 +11,11 @@ import productRouter from './routes/productsRouter.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 3005;
-
+console.log('CLIENT_URL:', process.env.CLIENT_URL);
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true,
   })
 );
