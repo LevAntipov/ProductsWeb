@@ -18,7 +18,6 @@ export interface ProductCardProps {
 
 export const ProductCard = React.memo(({ product, id, quantity, onOpen }: ProductCardProps) => {
   const { image, description, price, rating, title } = product;
-  console.log('rendered ', id);
   if (!product) return <div className={classes.card}>Loading...</div>;
 
   return (
