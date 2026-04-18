@@ -5,13 +5,6 @@ import { AuthedRequest } from '../middleware/requireUser.js';
 
 const db = new Database('database.sqlite');
 
-interface Order {
-  id: number;
-  userId: number;
-  orderDate: Date;
-  totalAmount: number;
-}
-
 export const checkout = async (req: Request, res: Response) => {
   const userId = (req as AuthedRequest).user?.id;
 
@@ -80,7 +73,48 @@ export const checkout = async (req: Request, res: Response) => {
 export const getOrders = async (req: Request, res: Response) => {
   const userId = (req as AuthedRequest).user?.id;
 
-  const orders = db.prepare(`SELECT * FROM orders WHERE userId=?`).all(userId) as Order[];
+  const orders = db
+    .prepare(
+      `
+      SELECT 
+        id,
+        orderDate,
+        totalAmount
+      FROM orders
+      WHERE userId = ?
+      ORDER BY orderDate DESC
+      `
+    )
+    .all(userId);
 
-  res.json({ orders });
+  res.json({ orders: orders });
+};
+
+export const getOrderDetails = async (req: Request, res: Response) => {
+  const userId = (req as AuthedRequest).user?.id;
+  let { id } = req.params;
+
+  const order = db.prepare('SELECT * FROM orders WHERE id = ? AND userId = ?').get(id, userId);
+
+  if (!order) {
+    return res.status(404).json({ message: 'Order not found' });
+  }
+
+  const items = db
+    .prepare(
+      `
+      SELECT 
+        order_items.productId,
+        order_items.quantity,
+        order_items.priceAtPurchase,
+        products.title,
+        products.image
+      FROM order_items
+      JOIN products ON products.id = order_items.productId
+      WHERE order_items.orderId = ?
+      `
+    )
+    .all(id);
+
+  res.json({ items });
 };

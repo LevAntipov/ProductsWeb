@@ -1,10 +1,11 @@
 import { Router } from 'express';
 
-import { checkout, getOrders } from '../controllers/order-controllers.js';
+import { checkout, getOrderDetails, getOrders } from '../controllers/order-controllers.js';
 
 const router = Router();
 
 router.get('/', getOrders);
+router.get('/:id', getOrderDetails);
 router.post('/', checkout);
 // router.patch('/items/:itemId', updateCart);
 // router.delete('/items/:itemId', deleteFromCart);
