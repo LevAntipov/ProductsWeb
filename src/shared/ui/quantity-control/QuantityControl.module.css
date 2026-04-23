@@ -16,7 +16,7 @@
   padding-inline: 15px;
   border: none;
   background-color: inherit;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   transition: background-color 0.2s ease;
 }
 

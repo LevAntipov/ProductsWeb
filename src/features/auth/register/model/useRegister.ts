@@ -1,10 +1,13 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router';
+
 import { authClient } from '@shared/lib/auth-client';
 
 import type { UserData } from './types';
 
 export const useRegister = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState<Error | null>(null);
 
   const handleRegister = async (userData: UserData) => {
@@ -18,7 +21,7 @@ export const useRegister = () => {
           setError(ctx.error);
         },
         onSuccess() {
-          alert('registered !');
+          navigate('/products');
         },
       }
     );

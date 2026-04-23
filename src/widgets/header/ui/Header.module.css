@@ -10,18 +10,22 @@
   column-gap: 40px;
   padding: 10px 20px;
   border: 1px solid black;
-  background-color: #1a1b22;
+  background-color: var(--color-accent);
+  box-sizing: border-box;
 }
 
 .shoppingCart {
   width: 40px;
-  padding: 5px;
-  border-radius: 5px;
+  height: 40px;
+  padding: 6px;
+  border-radius: var(--border-radius-sm);
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 .shoppingCart:hover {
-  background-color: #43bad2;
+  background-color: var(--color-accent-hover);
+  background-color: var(--color-accent-hover);
 }
 
 a {
@@ -33,13 +37,13 @@ a {
   padding-block: 5px;
   padding-inline: 15px;
   border: 1px rgb(128, 186, 193) solid;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   transition: 0.2s ease;
 }
 
 .shopName:hover {
   color: black;
-  background-color: #43bad2;
+  background-color: var(--color-accent-hover);
 }
 
 .searchBlock {
@@ -48,16 +52,30 @@ a {
   align-items: center;
   column-gap: 10px;
   position: relative;
+  flex: 1;
+  min-width: 0;
 }
 
 .cartWrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .shoppingCart {
   position: relative;
   display: inline-flex;
-  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.shoppingCart img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .cartBadge {
@@ -89,7 +107,7 @@ a {
   height: 36px;
   padding: 0;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   background: transparent;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -102,7 +120,7 @@ a {
   width: 70%;
   height: 2px;
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   transform: translate(-50%, -50%);
   transition: background-color 0.2s ease;
 }
@@ -115,7 +133,7 @@ a {
   width: 100%;
   height: 2px;
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;
@@ -130,7 +148,7 @@ a {
 }
 
 .burgerContainer:hover {
-  background-color: #43bad2;
+  background-color: var(--color-accent-hover);
 }
 
 .burgerContainer:hover .burger,
@@ -145,5 +163,29 @@ a {
   }
   .header {
     justify-content: space-between;
+    column-gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 8px 12px;
+    column-gap: 8px;
+  }
+
+  .shopName {
+    padding-inline: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .searchBlock {
+    column-gap: 6px;
+  }
+
+  .shoppingCart {
+    width: 36px;
+    height: 36px;
+    padding: 5px;
   }
 }

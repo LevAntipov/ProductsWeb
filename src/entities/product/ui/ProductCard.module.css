@@ -7,10 +7,10 @@
   flex-direction: column;
   row-gap: 20px;
   border: black 1px solid;
-  background-color: #1a1b22;
+  background-color: var(--color-accent);
   padding-top: 20px;
   padding-bottom: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-lg);
   color: #e6e6e9;
 }
 
@@ -24,7 +24,7 @@
   justify-content: center;
   padding: 5px;
   width: 100%;
-  background-color: rgba(68, 63, 84, 0.421);
+  background-color: var(--color-primary);
   height: 180px;
   justify-self: center;
 }

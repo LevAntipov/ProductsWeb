@@ -2,8 +2,8 @@
   display: flex;
   column-gap: 20px;
   padding: 40px 20px;
-  background-color: rgba(68, 63, 84, 0.421);
-  border-radius: 10px;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-lg);
   height: 220px;
 }
 
@@ -12,8 +12,8 @@
   width: 120px;
   flex-shrink: 0;
   padding: 20px;
-  background-color: #1a1b22;
-  border-radius: 10px;
+  background-color: var(--color-accent);
+  border-radius: var(--border-radius-lg);
   align-items: center;
   justify-content: center;
 }
@@ -52,7 +52,7 @@
   width: 40px;
   padding: 5px;
   background-color: #e26d6d;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   border: none;
   transition: background-color 0.2s ease;
 }

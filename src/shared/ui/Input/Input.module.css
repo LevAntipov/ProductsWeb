@@ -1,11 +1,11 @@
 .input {
   border: 1px solid rgb(57, 55, 78);
-  background-color: rgba(68, 63, 84, 0.421);
+  background-color: var(--color-primary);
   color: #e6e6e6;
   font-weight: 100;
   width: 100%;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   outline: none;
 }
 

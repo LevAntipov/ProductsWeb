@@ -8,6 +8,8 @@ import { store } from '@app/appStore';
 import { router } from '@app/router';
 import '@app/styles/normalize.css';
 
+import '@shared/styles/variables.css';
+
 import { AppInitializer } from './providers/AppInitializer';
 
 createRoot(document.getElementById('root')!).render(

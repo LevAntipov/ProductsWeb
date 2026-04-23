@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router';
 
 import { useCartQuantitiesMap } from '@entities/cart/model/useCartQuantitiesMap';
 
+import orderIcon from '@assets/orderIcon.png';
 import profileIcon from '@assets/profileIcon.png';
 import shoppingCart from '@assets/shoppingCartIcon.png';
 
@@ -27,6 +28,9 @@ export const Header = () => {
       <div className={classes.cartWrapper}>
         <Link to={'/profile'} className={classes.shoppingCart}>
           <img src={profileIcon} alt="Shopping cart"></img>
+        </Link>
+        <Link to={'/orders'} className={classes.shoppingCart}>
+          <img src={orderIcon} alt="Shopping cart"></img>
         </Link>
         <Link to={'/cart'} className={classes.shoppingCart}>
           <img src={shoppingCart} alt="Shopping cart"></img>
