@@ -1,4 +1,4 @@
-import { useLogout } from '@features/auth/logout/model/logout';
+import { useLogout } from '@features/auth/logout/model/useLogout';
 
 import { authClient } from '@shared/lib/auth-client';
 

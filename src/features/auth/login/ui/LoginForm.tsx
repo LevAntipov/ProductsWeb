@@ -53,6 +53,7 @@ export const LoginForm = () => {
           clearErrors('email');
         }}
         error={errors.email}
+        autoComplete="email"
       />
 
       <label>Password: </label>
@@ -65,6 +66,7 @@ export const LoginForm = () => {
           clearErrors('password');
         }}
         error={errors.password}
+        autoComplete="current-password"
       />
 
       <Button children="Log in" type="submit" />
