@@ -1,0 +1,16 @@
+:root {
+  /* Цвета */
+  --color-primary: #443f546b;
+  --color-primary-hover: #202335;
+  --color-accent: #1a1b22;
+  --color-accent-hover: #43bad2;
+  --color-border: #000000;
+  --color-text: #ffffff;
+
+  /* Шрифты */
+  --font-family-base: 'Roboto', sans-serif;
+  --font-size-base: 16px;
+
+  --border-radius-sm: 5px;
+  --border-radius-lg: 10px;
+}

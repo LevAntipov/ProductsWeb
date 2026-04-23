@@ -5,6 +5,17 @@
   color: rgb(230, 230, 233);
 }
 
+@media (max-width: 600px) {
+  .filterButton {
+    width: 110px;
+    font-size: 12px;
+  }
+
+  .filterMethods {
+    width: 130px;
+  }
+}
+
 .filter {
   display: flex;
 }
@@ -13,7 +24,7 @@
   display: flex;
   background-color: rgb(26, 27, 34);
   padding-inline: 5px;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
 }
 
 .chosenFilter img {
@@ -48,12 +59,12 @@
   padding: 5px;
   top: 35px;
   z-index: 1;
-  border-radius: 10px;
+  border-radius: var(--border-radius-lg);
   background-color: rgba(68, 63, 84, 0.82);
 }
 
 .filterMethods div:hover {
-  color: #43bad2;
+  color: var(--color-accent-hover);
 }
 
 .nonSelected {

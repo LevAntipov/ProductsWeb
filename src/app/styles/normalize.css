@@ -193,7 +193,7 @@ svg * {
 
 :root {
   --color-bg: #0e0e11;
-  --color-card: #1a1b22;
+  --color-card: var(--color-accent);
   --color-surface: #2c2e3a;
 
   --color-text: #e6e6e9;

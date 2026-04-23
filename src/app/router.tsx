@@ -1,7 +1,6 @@
 import { createHashRouter, Navigate } from 'react-router';
 
 import { CartPage } from '@pages/cart/ui/CartPage';
-import { OrderDetails } from '@pages/orders/ui/OrderDetails';
 import { OrderPage } from '@pages/orders/ui/OrderPage';
 import { ProductInfo } from '@pages/product-info/ui/ProductInfo';
 import { ProductsPage } from '@pages/products/ui/ProductPage';
@@ -42,11 +41,6 @@ export const router = createHashRouter([
         path: 'orders',
         Component: ProtectedLayoute,
         children: [{ index: true, Component: OrderPage }],
-      },
-      {
-        path: 'orders/:id',
-        Component: ProtectedLayoute,
-        children: [{ index: true, Component: OrderDetails }],
       },
       {
         path: 'auth',

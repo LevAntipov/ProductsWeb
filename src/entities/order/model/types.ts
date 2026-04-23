@@ -1,10 +1,10 @@
-interface Order {
-  id: 2;
-  orderDate: Date;
+export interface Order {
+  id: number;
+  orderDate: string;
   totalAmount: number;
 }
 
-interface OrderDetails {
+export interface OrderDetails {
   productId: number;
   quantity: number;
   priceAtPurchase: number;
@@ -19,3 +19,9 @@ export interface GetOrdersResponse {
 export interface GetOrderDetailsResponse {
   items: OrderDetails[];
 }
+
+export type CheckoutResponse = {
+  message: string;
+  orderId: number;
+  totalAmount: number;
+};

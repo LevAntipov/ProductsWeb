@@ -3,9 +3,16 @@ import classes from './PaymentBlock.module.css';
 interface PaymentBlockProps {
   totalPrice: number;
   totalQuantity: number;
+  onCheckout: () => void;
+  isCheckoutLoading?: boolean;
 }
 
-export const PaymentBlock = ({ totalPrice, totalQuantity }: PaymentBlockProps) => {
+export const PaymentBlock = ({
+  totalPrice,
+  totalQuantity,
+  onCheckout,
+  isCheckoutLoading,
+}: PaymentBlockProps) => {
   const freeDeliveryPrice = 500;
   let deliveryPrice = 10;
   const delta = +(freeDeliveryPrice - +totalPrice).toFixed(2);
@@ -25,12 +32,18 @@ export const PaymentBlock = ({ totalPrice, totalQuantity }: PaymentBlockProps) =
           </tr>
           <tr>
             <td>OrderTotal</td>
-            <td>{+deliveryPrice + +totalPrice}$</td>
+            <td>{(+deliveryPrice + +totalPrice).toFixed(2)}$</td>
           </tr>
         </tbody>
       </table>
       {+delta > 0 && <span>Order more than {delta} for free delivery</span>}
-      <button className={classes.purchaseButton}>Buy now</button>
+      <button
+        className={classes.purchaseButton}
+        onClick={onCheckout}
+        disabled={isCheckoutLoading || totalQuantity === 0}
+      >
+        {isCheckoutLoading ? 'Processing...' : 'Buy now'}
+      </button>
     </div>
   );
 };

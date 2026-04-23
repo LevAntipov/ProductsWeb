@@ -4,9 +4,8 @@
 }
 .body {
   max-width: 1200px;
-  min-height: 100vh;
   margin: 0 auto;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-family-base), sans-serif;
   margin-top: 60px;
   padding: 20px;
 }

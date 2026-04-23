@@ -2,6 +2,7 @@ import type { CartItem as ICartItem } from '@entities/cart/model/types';
 
 import { CartItem } from './CartItem/CartItem';
 import classes from './CartPage.module.css';
+import { EmptyResource } from '@shared/ui/empty-resource/EmptyResource';
 
 interface CartListProps {
   productsList?: ICartItem[];
@@ -10,9 +11,7 @@ interface CartListProps {
 export const CartList = ({ productsList }: CartListProps) => {
   if (!productsList || productsList.length === 0) {
     return (
-      <div className={classes.emptyCart}>
-        <div className={classes.emptyMessage}>No products in cart</div>
-      </div>
+     <EmptyResource text='No products in cart'/>
     );
   }
 
