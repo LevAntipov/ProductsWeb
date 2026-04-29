@@ -1,8 +1,10 @@
 import { betterAuth } from 'better-auth';
 import Database from 'better-sqlite3';
 
+import { db } from './db.js';
+
 export const auth = betterAuth({
-  database: new Database('database.sqlite'),
+  database: db,
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,

@@ -22,7 +22,6 @@ export const ChangeProductQuantityControl = ({
 }: ChangeProductQuantityControlProps) => {
   const { quantity, setQuantity, isLoading } = useChangeProductQuantity(id, initialQuantity);
   const { isFetching } = useGetCartQuery();
-
   const dispatch = useAppDispatch();
 
   const ids = useSelector((state: RootState) => state.carts.fetchingIdsInProgress);
@@ -39,7 +38,6 @@ export const ChangeProductQuantityControl = ({
   }, [isFetching, isLoading]);
   return (
     <QuantityControl
-      key={id}
       onIncrement={() => setQuantity((p) => p + 1)}
       onDecrement={() => setQuantity((p) => Math.max(0, p - 1))}
       quantity={quantity}

@@ -5,9 +5,10 @@
   "type": "module",
   "homepage": "https://levantipov.github.io/ProductsWeb",
   "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:server\"",
+    "dev:setup": "npm install && npm --prefix server install && npm run dev",
     "dev:vite": "vite",
-    "dev:server": "tsx watch --env-file=.env server/src/index.ts",
-    "dev": "concurrently 'npm run dev:vite' 'npm run  dev:server'",
+    "dev:server": "tsx watch --env-file=server/.env server/src/index.ts",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json}\"",

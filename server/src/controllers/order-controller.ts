@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 
 import { AuthedRequest } from '../middleware/requireUser.js';
 
-const db = new Database('database.sqlite');
+import { db } from '../db.js';
 
 export const checkout = async (req: Request, res: Response) => {
   const userId = (req as AuthedRequest).user?.id;

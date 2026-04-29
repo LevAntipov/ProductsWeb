@@ -4,7 +4,7 @@ import type { Request, Response } from 'express';
 import { AuthedRequest } from '../middleware/requireUser.js';
 import { CartItem, CartTotals } from './types.js';
 
-const db = new Database('database.sqlite');
+import { db } from '../db.js';
 
 export const getCart = (req: Request, res: Response) => {
   const user = (req as AuthedRequest).user;

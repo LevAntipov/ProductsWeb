@@ -26,7 +26,7 @@ export const ordersApi = api.injectEndpoints({
         method: 'POST',
       }),
       invalidatesTags: [
-        { type: 'Cart', id: 'CURRENT' },
+        'Cart',
         { type: 'Order', id: 'LIST' },
       ],
     }),

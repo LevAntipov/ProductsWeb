@@ -6,16 +6,7 @@ export const cartApi = api.injectEndpoints({
   endpoints: (build) => ({
     getCart: build.query<GetCartResponse, void>({
       query: () => 'cart',
-      providesTags: (result) =>
-        result
-          ? [
-              { type: 'Cart', id: 'CURRENT' },
-              ...result.items.map((item) => ({
-                type: 'CartItem' as const,
-                id: item.id,
-              })),
-            ]
-          : [{ type: 'Cart', id: 'CURRENT' }],
+      providesTags: ['Cart'],
     }),
 
     addCartItem: build.mutation<{ ok: true }, AddCartItemRequest>({
@@ -24,7 +15,7 @@ export const cartApi = api.injectEndpoints({
         method: 'POST',
         body,
       }),
-      invalidatesTags: [{ type: 'Cart', id: 'CURRENT' }],
+      invalidatesTags: ['Cart'],
     }),
 
     updateCartItem: build.mutation<{ ok: true; removed?: true }, UpdateCartItemRequest>({
@@ -33,10 +24,7 @@ export const cartApi = api.injectEndpoints({
         method: 'PATCH',
         body: { quantity },
       }),
-      invalidatesTags: (_result, _error, arg) => [
-        { type: 'Cart', id: 'CURRENT' },
-        { type: 'CartItem', id: arg.itemId },
-      ],
+      invalidatesTags: ['Cart'],
     }),
 
     deleteCartItem: build.mutation<{ ok: true }, number>({
@@ -44,10 +32,7 @@ export const cartApi = api.injectEndpoints({
         url: `cart/items/${itemId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (_result, _error, itemId) => [
-        { type: 'Cart', id: 'CURRENT' },
-        { type: 'CartItem', id: itemId },
-      ],
+      invalidatesTags: ['Cart'],
     }),
   }),
 });

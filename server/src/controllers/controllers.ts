@@ -3,9 +3,8 @@ import Database from 'better-sqlite3';
 import type { Request, Response } from 'express';
 
 import { auth } from '../auth.js';
+import { db } from '../db.js';
 import { Product, ProductRaw } from './types.js';
-
-const db = new Database('database.sqlite');
 
 export const checkAuth = async (req: Request, res: Response) => {
   const session = await auth.api.getSession({
