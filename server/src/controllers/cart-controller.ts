@@ -1,10 +1,8 @@
-import Database from 'better-sqlite3';
 import type { Request, Response } from 'express';
 
+import { db } from '../db.js';
 import { AuthedRequest } from '../middleware/requireUser.js';
 import { CartItem, CartTotals } from './types.js';
-
-const db = new Database('database.sqlite');
 
 export const getCart = (req: Request, res: Response) => {
   const user = (req as AuthedRequest).user;

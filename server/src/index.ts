@@ -22,6 +22,7 @@ app.use(
 );
 
 app.use('/api', healthRouter);
+
 app.use('/api/products', productRouter);
 app.use('/api/cart', requireUser, cartRouter);
 app.use('/api/orders', requireUser, ordersRouter);

@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router';
 
 import { useCartQuantitiesMap } from '@entities/cart/model/useCartQuantitiesMap';
+
 import orderIcon from '@assets/orderIcon.png';
 import profileIcon from '@assets/profileIcon.png';
 import shoppingCart from '@assets/shoppingCartIcon.png';

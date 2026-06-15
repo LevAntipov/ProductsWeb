@@ -52,6 +52,10 @@
   height: 15px;
 }
 
+.filterMenuWrapper {
+  position: relative;
+}
+
 .filterMethods {
   width: 155px;
   position: absolute;
