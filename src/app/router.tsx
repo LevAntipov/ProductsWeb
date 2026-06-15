@@ -27,12 +27,6 @@ export const router = createHashRouter([
           { path: 'orders', Component: OrderPage },
         ],
       },
-
-      {
-        path: 'orders',
-        Component: ProtectedLayoute,
-        children: [{ index: true, Component: OrderPage }],
-      },
       {
         path: 'auth',
         children: [
