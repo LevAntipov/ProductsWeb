@@ -14,7 +14,6 @@ export const useLogout = () => {
     if (error) {
       return;
     }
-    alert('logged out');
   };
 
   return {
