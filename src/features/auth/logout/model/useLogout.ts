@@ -9,11 +9,7 @@ export const useLogout = () => {
   const handleLogout = async () => {
     dispatch(api.util.resetApiState());
     console.log(store.getState().api.queries);
-    const { error } = await authClient.signOut();
-
-    if (error) {
-      return;
-    }
+    const {} = await authClient.signOut();
   };
 
   return {
