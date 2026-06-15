@@ -7,7 +7,7 @@ import { ProductsPage } from '@pages/products/ui/ProductPage';
 import { ProfilePage } from '@pages/profile/ui/ProfilePage';
 import { LoginPage, RegisterPage } from '@pages/sign-in';
 
-import { ProtectedLayoute } from './layouts/ProtectedLayout';
+import { ProtectedLayout } from './layouts/ProtectedLayout';
 import { RootLayout } from './layouts/RootLayout';
 
 export const router = createHashRouter([
@@ -15,33 +15,19 @@ export const router = createHashRouter([
     path: '/',
     Component: RootLayout,
     children: [
+      { index: true, element: <Navigate to="products" replace /> },
+      { path: 'products', Component: ProductsPage },
+      { path: 'products/:id', Component: ProductInfo },
+
       {
-        index: true,
-        element: <Navigate to="products" replace />,
+        Component: ProtectedLayout,
+        children: [
+          { path: 'cart', Component: CartPage },
+          { path: 'profile', Component: ProfilePage },
+          { path: 'orders', Component: OrderPage },
+        ],
       },
-      {
-        path: 'products',
-        Component: ProductsPage,
-      },
-      {
-        path: 'products/:id',
-        Component: ProductInfo,
-      },
-      {
-        path: 'cart',
-        Component: ProtectedLayoute,
-        children: [{ index: true, Component: CartPage }],
-      },
-      {
-        path: 'profile',
-        Component: ProtectedLayoute,
-        children: [{ index: true, Component: ProfilePage }],
-      },
-      {
-        path: 'orders',
-        Component: ProtectedLayoute,
-        children: [{ index: true, Component: OrderPage }],
-      },
+
       {
         path: 'auth',
         children: [

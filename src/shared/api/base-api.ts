@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3005/api/',
+  baseUrl: import.meta.env.VITE_BASE_API_URL,
   credentials: 'include',
   prepareHeaders: (headers) => headers,
 });

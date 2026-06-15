@@ -27,7 +27,9 @@ export const AddToCartButton = ({
   const [addItem, { isLoading }] = useAddCartItemMutation();
 
   const handleAddButtonClick = async () => {
-    if (!data) return navigate('/auth');
+    if (!data) {
+      return navigate('/auth',{state:{reason:'auth_required'}});
+    }
     await addItem({ productId: id, quantity });
     onSuccess && onSuccess();
   };
