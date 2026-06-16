@@ -1,4 +1,5 @@
 import { betterAuth } from 'better-auth';
+import { bearer } from 'better-auth/plugins';
 
 import { db } from './db.js';
 
@@ -17,10 +18,6 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 6,
   },
-  advanced: {
-    crossSubDomainCookies: {
-      enabled: true,
-    },
-  },
+  plugins: [bearer()],
   trustedOrigins: [process.env.CLIENT_URL || 'http://localhost:5173'],
 });

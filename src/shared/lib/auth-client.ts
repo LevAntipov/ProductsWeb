@@ -3,6 +3,15 @@ import { createAuthClient } from 'better-auth/react';
 export const authClient = createAuthClient({
   baseURL: import.meta.env.VITE_BASE_URL,
   fetchOptions: {
-    credentials: 'include',
+    onSuccess: (ctx) => {
+      const authToken = ctx.response.headers.get('set-auth-token');
+      if (authToken) {
+        localStorage.setItem('bearer_token', authToken);
+      }
+    },
+    auth: {
+      type: 'Bearer',
+      token: () => localStorage.getItem('bearer_token') || '',
+    },
   },
 });
