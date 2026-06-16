@@ -20,7 +20,6 @@ export const auth = betterAuth({
   advanced: {
     crossSubDomainCookies: {
       enabled: true,
-      domain: '.railway.app',
     },
   },
   trustedOrigins: [process.env.CLIENT_URL || 'http://localhost:5173'],
